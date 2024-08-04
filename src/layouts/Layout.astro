@@ -1,4 +1,7 @@
 ---
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+
 interface Props {
 	title: string;
 }
@@ -16,8 +19,12 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<slot />
+	<body class="flex flex-col border border-purple-300 bg-background text-text">
+		<NavBar />
+		<div class="grow">
+			<slot />
+		</div>
+		<Footer />
 	</body>
 </html>
 <style is:global>
@@ -34,7 +41,8 @@ const { title } = Astro.props;
 	}
 	html {
 		font-family: system-ui, sans-serif;
-		background: #13151a;
+		background: #FFFCF2;
+		color: #252422;
 	}
 	code {
 		font-family:
