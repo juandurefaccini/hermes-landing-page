@@ -1,0 +1,62 @@
+---
+import Button from "./Button.astro";
+import MetaLogo from "../images/Meta-Logo.png";
+import PhoneScreen from "../images/phone.png";
+import PhoneScreen2 from "../images/phone2.jpeg";
+import { Image } from "astro:assets";
+---
+
+<section class="text-justify md:text-left bg-primary">
+  <div
+    class="container mx-auto py-24 p-4 md:max-w-6xl w-full md:grid md:grid-cols-12 md:gap-4 md:items-stretch"
+  >
+    <div class="md:col-span-6 flex flex-col justify-between">
+      <div>
+        <h1 class="text-6xl italic font-bold md:text-8xl">
+          TU<span class="text-background">.</span>BO
+        </h1>
+        <p class="text-2xl not-italic mt-6 md:text-4xl">
+          Tu negocio, ahora también al alcance de tus clientes.
+        </p>
+        <p class="text-md md:text-xl mt-4">
+          Generamos asistentes que a través de whatsapp te permiten hacer la
+          plancha.
+        </p>
+        <p class="text-md mt-4 md:text-xl">
+          Trabajá tranquilo, <span class="italic font-bold"
+            >TU<span class="text-background">.</span>BO</span
+          > se encarga del resto
+        </p>
+      </div>
+      <div>
+        <div
+          class="h-12 flex text-background items-center font-bold gap-2 w-full mt-6 md:text-md"
+        >
+          Funcionando gracias a <Image
+            src={MetaLogo}
+            alt="Meta Logo"
+            class="h-full aspect-auto w-auto"
+          />
+        </div>
+        <div class="flex gap-2 mt-6 w-full">
+          <Button
+            ><span class="font-bold text-sm md:text-lg"
+              >QUIERO MI ASISTENTE</span
+            ></Button
+          >
+          <Button class="px-16 whitespace-nowrap"
+            ><span class="font-bold text-sm md:text-lg">VENTAS</span></Button
+          >
+        </div>
+      </div>
+    </div>
+    <div class="md:col-span-3"></div>
+    <div class="w-full mt-6 md:mt-0 md:col-span-3 grid items-end">
+      <Image
+        src={PhoneScreen2}
+        alt="Phone screen example"
+        class="w-full aspect-[9/20] object-cover rounded-xl shrink-0"
+      />
+    </div>
+  </div>
+</section>

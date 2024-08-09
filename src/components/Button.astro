@@ -1,0 +1,16 @@
+---
+type ButtonProps = {
+  title: string;
+  variant: "primary" | "secondary";
+};
+
+const { variant } = Astro.props;
+---
+
+<button
+  class={`grow px-4 py-1 rounded-3xl  ${
+    variant === "primary" ? "bg-primary" : "bg-background"
+  }`}
+>
+  <slot />
+</button>
