@@ -1,16 +1,18 @@
 ---
-type ButtonProps = {
-  title: string;
-  variant: "primary" | "secondary";
+type Props = {
+  variant?: "primary" | "secondary";
+  class?: string;
 };
 
-const { variant } = Astro.props;
+const { variant = "primary", class: className } = Astro.props;
 ---
 
 <button
-  class={`grow px-4 py-1 rounded-3xl  ${
-    variant === "primary" ? "bg-primary" : "bg-background"
-  }`}
+  class:list={[
+    `grow px-4 py-1 rounded-3xl`,
+    variant === "primary" ? "bg-primary" : "bg-background",
+    className,
+  ]}
 >
   <slot />
 </button>

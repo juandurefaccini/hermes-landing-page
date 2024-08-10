@@ -1,0 +1,67 @@
+---
+import AdvantagesCard from "../components/AdvantagesCard.astro";
+import Button from "../components/Button.astro";
+import RocketIcon from "../components/icons/RocketIcon.astro";
+import WorldIcon from "../components/icons/WorldIcon.astro";
+import DontSleepIcon from "../components/icons/DontSleepIcon.astro";
+import MetaSvgIcon from "../components/icons/MetaSvgIcon.astro";
+import BrushIcon from "../components/icons/BrushIcon.astro";
+---
+
+<section class="text-center bg-background py-16">
+  <div class="container mx-auto p-4 md:max-w-6xl w-full flex flex-col gap-16">
+    <h1 class="text-4xl italic font-bold md:text-4xl">
+      Descubri los beneficios de usar TUBOT
+    </h1>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <AdvantagesCard
+        title="Respuestas ágiles"
+        description="Agilidad en las respuestas, todo por WhatsApp, sin intermediarios"
+      >
+        <RocketIcon class="w-24 h-24" />
+      </AdvantagesCard>
+
+      <AdvantagesCard
+        title="Reducir barreras"
+        description="Reduce la fricción con el usuario y aprovecha una plataforma globalmente aceptada"
+      >
+        <WorldIcon class="w-24 h-24" />
+      </AdvantagesCard>
+
+      <AdvantagesCard
+        title="Siempre disponible"
+        description="Trabajamos para que no trabajes, tu asistente estará disponible 24/7 y no se toma feriados!"
+      >
+        <DontSleepIcon class="w-24 h-24" />
+      </AdvantagesCard>
+
+      <AdvantagesCard
+        title="Meta"
+        description="Brindamos soporte para operar a través de Meta, asegurando estabilidad y evitando bloqueos inesperados"
+      >
+        <MetaSvgIcon class="w-24 h-24" />
+      </AdvantagesCard>
+
+      <AdvantagesCard
+        title="Crece con tu negocio"
+        description="TU.BO se adapta y evoluciona a medida que tu negocio se expande, ofreciendo soluciones flexibles para tus necesidades cambiantes"
+      >
+        <BrushIcon class="w-24 h-24" />
+      </AdvantagesCard>
+
+      <AdvantagesCard
+        title="Personalización total"
+        description="Adaptamos tu agente para que se ajuste perfectamente a las necesidades específicas de tu negocio"
+      >
+        <WorldIcon class="w-24 h-24" />
+      </AdvantagesCard>
+    </div>
+    <div>
+      <Button variant="primary"
+        ><span class="font-bold text-xs md:text-lg"
+          >Descubri como TU.BOT puede transformar tu negocio</span
+        ></Button
+      >
+    </div>
+  </div>
+</section>

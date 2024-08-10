@@ -1,5 +1,5 @@
 ---
-import Button from "./Button.astro";
+import Button from "../components/Button.astro";
 import MetaLogo from "../images/Meta-Logo.png";
 import PhoneScreen from "../images/phone.png";
 import PhoneScreen2 from "../images/phone2.jpeg";
@@ -39,12 +39,12 @@ import { Image } from "astro:assets";
           />
         </div>
         <div class="flex gap-2 mt-6 w-full">
-          <Button
+          <Button variant="secondary"
             ><span class="font-bold text-sm md:text-lg"
               >QUIERO MI ASISTENTE</span
             ></Button
           >
-          <Button class="px-16 whitespace-nowrap"
+          <Button class="px-16 whitespace-nowrap" variant="secondary"
             ><span class="font-bold text-sm md:text-lg">VENTAS</span></Button
           >
         </div>
