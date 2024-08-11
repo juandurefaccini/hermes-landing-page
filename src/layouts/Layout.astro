@@ -16,6 +16,8 @@ import "@fontsource/ubuntu/300.css";
 import "@fontsource/ubuntu/400.css";
 import "@fontsource/ubuntu/500.css";
 import "@fontsource/ubuntu/700.css";
+
+import { ViewTransitions } from "astro:transitions";
 ---
 
 <!doctype html>
@@ -27,6 +29,7 @@ import "@fontsource/ubuntu/700.css";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
   <body class="flex flex-col border border-purple-300 bg-background text-text">
     <!-- <NavBar /> -->
@@ -52,6 +55,7 @@ import "@fontsource/ubuntu/700.css";
     font-family: system-ui, sans-serif;
     background: #fffcf2;
     color: #252422;
+    scroll-behavior: smooth;
   }
   code {
     font-family:

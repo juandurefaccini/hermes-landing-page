@@ -2,7 +2,7 @@
 import Button from "../components/Button.astro";
 import MetaLogo from "../images/Meta-Logo.png";
 import PhoneScreen from "../images/phone.png";
-import PhoneScreen2 from "../images/phone2.jpeg";
+import PhoneScreen2 from "../images/phone2.png";
 import { Image } from "astro:assets";
 ---
 
@@ -13,7 +13,7 @@ import { Image } from "astro:assets";
     <div class="md:col-span-6 flex flex-col justify-between">
       <div>
         <h1 class="text-6xl italic font-bold md:text-8xl">
-          TU<span class="text-background">.</span>BO
+          TU<span class="text-background">.</span>BOT
         </h1>
         <p class="text-2xl not-italic mt-6 md:text-4xl">
           Tu negocio, ahora también al alcance de tus clientes.
@@ -24,7 +24,7 @@ import { Image } from "astro:assets";
         </p>
         <p class="text-md mt-4 md:text-xl">
           Trabajá tranquilo, <span class="italic font-bold"
-            >TU<span class="text-background">.</span>BO</span
+            >TU<span class="text-background">.</span>BOT</span
           > se encarga del resto
         </p>
       </div>
@@ -39,14 +39,18 @@ import { Image } from "astro:assets";
           />
         </div>
         <div class="flex gap-2 mt-6 w-full">
-          <Button variant="secondary"
-            ><span class="font-bold text-sm md:text-lg"
-              >QUIERO MI ASISTENTE</span
-            ></Button
-          >
-          <Button class="px-16 whitespace-nowrap" variant="secondary"
-            ><span class="font-bold text-sm md:text-lg">VENTAS</span></Button
-          >
+          <a href="#cta">
+            <Button variant="secondary">
+              <span class="font-bold text-sm md:text-lg"
+                >QUIERO MI ASISTENTE</span
+              >
+            </Button>
+          </a>
+          <a href="#cta">
+            <Button class="px-16 whitespace-nowrap" variant="secondary">
+              <span class="font-bold text-sm md:text-lg">VENTAS</span>
+            </Button>
+          </a>
         </div>
       </div>
     </div>
