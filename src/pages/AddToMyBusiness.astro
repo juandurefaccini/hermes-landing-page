@@ -3,39 +3,40 @@ import AdvantagesCard from "../components/AdvantagesCard.astro";
 import LaptopIcon from "../components/icons/LaptopIcon.astro";
 import WhatsappIcon from "../components/icons/WhatsappIcon.astro";
 import ClockDollarIcon from "../components/icons/ClockDollarIcon.astro";
+import AddToMyBusinessCard from "../components/AddToMyBusinessCard.astro";
 ---
 
-<section class="text-center bg-primary">
+<section class="text-center bg-secondary h-screen">
   <div
-    class="container mx-auto py-24 p-4 md:max-w-6xl w-full flex flex-col gap-11"
+    class="container mx-auto py-24 p-4 md:max-w-6xl w-full flex flex-col gap-11 h-full"
   >
     <h1 class="text-4xl italic font-bold md:text-4xl">
-      ¿Cómo incorporo TU.BOT a mi negocio?
+      ¿Cómo incorporo <span class="italic font-bold">HERMES</span> a mi negocio?
     </h1>
     <h2 class="text-2xl italic font-bold md:text-2xl">
       ¡Es muy fácil! Solo tenés que seguir estos pasos:
     </h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <AdvantagesCard
-        title="1# - Desarrollo"
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-full items-center">
+      <AddToMyBusinessCard
+        title="Desarrollo"
         description="Desarrollamos tu agente virtual a medida, según tus necesidades y requerimientos"
       >
         <LaptopIcon />
-      </AdvantagesCard>
+      </AddToMyBusinessCard>
 
-      <AdvantagesCard
-        title="2# - Activación"
+      <AddToMyBusinessCard
+        title="Activación"
         description="Activamos tu agente virtual en tu WhatsApp, listo para trabajar"
       >
         <WhatsappIcon />
-      </AdvantagesCard>
+      </AddToMyBusinessCard>
 
-      <AdvantagesCard
-        title="3# - Aprovechá"
+      <AddToMyBusinessCard
+        title="Aprovechá"
         description="Aprovechá el tiempo que te sobra gracias a TUBOT, y dedicátelo a vos y a tu negocio"
       >
         <ClockDollarIcon />
-      </AdvantagesCard>
+      </AddToMyBusinessCard>
     </div>
   </div>
 </section>
