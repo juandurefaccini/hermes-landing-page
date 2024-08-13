@@ -6,68 +6,66 @@ import WorldIcon from "../components/icons/WorldIcon.astro";
 import DontSleepIcon from "../components/icons/DontSleepIcon.astro";
 import MetaSvgIcon from "../components/icons/MetaSvgIcon.astro";
 import BrushIcon from "../components/icons/BrushIcon.astro";
+import TrendingUpIcon from "../components/icons/TrendingUpIcon.astro";
 ---
 
-<section class="text-center bg-background py-16 h-screen">
+<section class="h-screen bg-background py-16 text-center">
   <div
-    class="container mx-auto p-4 md:max-w-6xl w-full flex flex-col h-full justify-around"
+    class="container mx-auto flex h-full w-full flex-col justify-between md:max-w-6xl"
   >
-    <h1 class="text-xl italic font-bold md:text-4xl">
-      Descubrí los beneficios de usar <span class="italic font-bold"
+    <h1 class="text-xl font-bold italic md:text-4xl">
+      Descubrí los beneficios de usar <span class="font-bold italic"
         >HERMES</span
       >
     </h1>
-    <div class="flex flex-col justify-between h-full grow-0 gap-4">
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 items-center h-full">
-        <AdvantagesCard
-          title="Respuestas ágiles"
-          description="Agilidad en las respuestas, todo por WhatsApp, sin intermediarios"
-        >
-          <RocketIcon class="w-24 h-24" />
-        </AdvantagesCard>
+    <div class="grid h-full grid-cols-2 items-center gap-4 md:grid-cols-3">
+      <AdvantagesCard
+        title="Respuestas ágiles"
+        description="Agilidad en las respuestas, todo por WhatsApp, sin intermediarios"
+      >
+        <RocketIcon />
+      </AdvantagesCard>
 
-        <AdvantagesCard
-          title="Reducir barreras"
-          description="Reduce la fricción con el usuario y aprovecha una plataforma globalmente aceptada"
-        >
-          <WorldIcon class="w-24 h-24" />
-        </AdvantagesCard>
+      <AdvantagesCard
+        title="Reducir barreras"
+        description="Reduce la fricción con el usuario y aprovecha una plataforma globalmente aceptada"
+      >
+        <WorldIcon />
+      </AdvantagesCard>
 
-        <AdvantagesCard
-          title="Siempre disponible"
-          description="Trabajamos para que no trabajes, tu asistente estará disponible 24/7 y no se toma feriados!"
-        >
-          <DontSleepIcon class="w-24 h-24" />
-        </AdvantagesCard>
+      <AdvantagesCard
+        title="Siempre disponible"
+        description="Trabajamos para que no trabajes, tu asistente estará disponible 24/7 y no se toma feriados!"
+      >
+        <DontSleepIcon />
+      </AdvantagesCard>
 
-        <AdvantagesCard
-          title="Meta"
-          description="Brindamos soporte para operar a través de Meta, asegurando estabilidad y evitando bloqueos inesperados"
-        >
-          <MetaSvgIcon class="w-24 h-24" />
-        </AdvantagesCard>
+      <AdvantagesCard
+        title="Meta"
+        description="Brindamos soporte para operar a través de Meta, asegurando estabilidad y evitando bloqueos inesperados"
+      >
+        <MetaSvgIcon />
+      </AdvantagesCard>
 
-        <AdvantagesCard
-          title="Crece con tu negocio"
-          description="TU.BOT se adapta y evoluciona con vos, ofreciendo soluciones flexibles para tus necesidades cambiantes"
-        >
-          <BrushIcon class="w-24 h-24" />
-        </AdvantagesCard>
+      <AdvantagesCard
+        title="Crece con tu negocio"
+        description="Hermes se adapta y evoluciona con vos, ofreciendo soluciones flexibles para tus necesidades cambiantes"
+      >
+        <TrendingUpIcon />
+      </AdvantagesCard>
 
-        <AdvantagesCard
-          title="Personalización total"
-          description="Adaptamos tu agente para que se ajuste perfectamente a las necesidades específicas de tu negocio"
-        >
-          <WorldIcon class="w-24 h-24" />
-        </AdvantagesCard>
-      </div>
-      <div>
-        <Button variant="primary"
-          ><span class="font-bold text-xs md:text-lg"
-            >Transformar tu negocio</span
-          ></Button
-        >
-      </div>
+      <AdvantagesCard
+        title="Personalización total"
+        description="Adaptamos tu agente para que se ajuste perfectamente a las necesidades específicas de tu negocio"
+      >
+        <BrushIcon />
+      </AdvantagesCard>
+    </div>
+    <div class="">
+      <Button variant="primary"
+        ><span class="text-xs font-bold md:text-lg">Transformar tu negocio</span
+        ></Button
+      >
     </div>
   </div>
 </section>

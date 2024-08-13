@@ -1,14 +1,20 @@
 ---
-
+import HermesIcon from "../components/icons/HermesIcon.astro";
 ---
 
-<div class="fixed bottom-8 left-1/2 -translate-x-1/2">
+<div class="fixed bottom-8 left-1/2 hidden -translate-x-1/2 md:block">
   <div
-    class="bg-text p-4 group rounded-full hover:bg-primary transition-all duration-300"
+    class="group flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-text p-2 transition-all duration-300 ease-in-out hover:w-64 hover:border hover:bg-primary"
   >
-    <p class="group-hover:hidden text-primary">Hermes</p>
-    <h1 class="hidden group-hover:block font-semibold">
-      Contacta con nosotros
+    <div
+      class="absolute text-primary transition-opacity duration-300 group-hover:opacity-0"
+    >
+      <HermesIcon />
+    </div>
+    <h1
+      class="text-white whitespace-nowrap font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+    >
+      Contacta con nosotros!
     </h1>
   </div>
 </div>
