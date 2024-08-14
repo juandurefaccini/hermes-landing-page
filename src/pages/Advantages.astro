@@ -9,33 +9,35 @@ import BrushIcon from "../components/icons/BrushIcon.astro";
 import TrendingUpIcon from "../components/icons/TrendingUpIcon.astro";
 ---
 
-<section class="h-screen bg-background py-16 text-center">
+<section class="h-screen bg-background text-center">
   <div
-    class="container mx-auto flex h-full w-full flex-col justify-between md:max-w-6xl"
+    class="container mx-auto flex h-full w-full flex-col justify-between py-16 md:max-w-6xl"
   >
-    <h1 class="text-xl font-bold italic md:text-4xl">
-      Descubrí los beneficios de usar <span class="font-bold italic"
-        >HERMES</span
+    <h1 class="text-xl font-bold md:text-4xl">
+      Descubrí los beneficios de usar <span
+        class="font-bold italic text-primary">HERMES</span
       >
     </h1>
-    <div class="grid h-full grid-cols-2 items-center gap-4 md:grid-cols-3">
+    <div
+      class="grid h-full grid-cols-2 items-center justify-end gap-4 p-4 pt-24 md:grid-cols-3"
+    >
       <AdvantagesCard
         title="Respuestas ágiles"
-        description="Agilidad en las respuestas, todo por WhatsApp, sin intermediarios"
+        description="Agilidad en las respuestas sin salir de WhatsApp"
       >
         <RocketIcon />
       </AdvantagesCard>
 
       <AdvantagesCard
-        title="Reducir barreras"
-        description="Reduce la fricción con el usuario y aprovecha una plataforma globalmente aceptada"
+        title="Reduce barreras"
+        description="Aprovecha una plataforma globalmente aceptada y reducí la fricción con el usuario"
       >
         <WorldIcon />
       </AdvantagesCard>
 
       <AdvantagesCard
         title="Siempre disponible"
-        description="Trabajamos para que no trabajes, tu asistente estará disponible 24/7 y no se toma feriados!"
+        description="Trabajamos para que no trabajes, tu asistente estará disponible 24/7"
       >
         <DontSleepIcon />
       </AdvantagesCard>
@@ -49,23 +51,22 @@ import TrendingUpIcon from "../components/icons/TrendingUpIcon.astro";
 
       <AdvantagesCard
         title="Crece con tu negocio"
-        description="Hermes se adapta y evoluciona con vos, ofreciendo soluciones flexibles para tus necesidades cambiantes"
+        description="Hermes se adapta y evoluciona con vos, acompañandote en tus nuevos desafíos"
       >
         <TrendingUpIcon />
       </AdvantagesCard>
 
       <AdvantagesCard
-        title="Personalización total"
+        title="Personalizado"
         description="Adaptamos tu agente para que se ajuste perfectamente a las necesidades específicas de tu negocio"
       >
         <BrushIcon />
       </AdvantagesCard>
     </div>
-    <div class="">
+    <!-- <div class="">
       <Button variant="primary"
-        ><span class="text-xs font-bold md:text-lg">Transformar tu negocio</span
-        ></Button
+        ><span class="text-xs md:text-lg">Transformar tu negocio</span></Button
       >
-    </div>
+    </div> -->
   </div>
 </section>
