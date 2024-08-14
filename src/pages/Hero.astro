@@ -155,21 +155,21 @@ const initialBusinessName = businessTypes[0];
 
     function updateContent() {
       const businessTypeElement = document.getElementById("businessType");
-      const phoneScreenElement = document.getElementById("phoneScreen");
+      // const phoneScreenElement = document.getElementById("phoneScreen");
 
-      if (businessTypeElement && phoneScreenElement) {
+      if (businessTypeElement) {
         // Fade out
         businessTypeElement.style.opacity = "0";
-        phoneScreenElement.style.opacity = "0";
+        // phoneScreenElement.style.opacity = "0";
 
         setTimeout(() => {
           // Update content
           businessTypeElement.textContent = businessTypes[currentIndex];
-          phoneScreenElement.src = phoneScreens[currentIndex];
+          // phoneScreenElement.src = phoneScreens[currentIndex];
 
           // Fade in
           businessTypeElement.style.opacity = "1";
-          phoneScreenElement.style.opacity = "1";
+          // phoneScreenElement.style.opacity = "1";
         }, 250);
       }
 
