@@ -6,27 +6,27 @@ import ClockDollarIcon from "../components/icons/ClockDollarIcon.astro";
 import AddToMyBusinessCard from "../components/AddToMyBusinessCard.astro";
 ---
 
-<section class="text-center bg-secondary h-screen">
+<section class="h-screen bg-secondary text-center">
   <div
-    class="container mx-auto py-12 md:py-24 p-4 md:max-w-6xl w-full flex flex-col gap-11 h-full"
+    class="container mx-auto flex h-full w-full flex-col gap-11 p-4 py-12 md:max-w-6xl md:py-24"
   >
-    <h1 class="text-xl italic font-bold md:text-4xl">
-      ¿Cómo incorporo <span class="italic font-bold">HERMES</span> a mi negocio?
+    <h1 class="text-xl font-bold italic tracking-tighter md:text-4xl">
+      ¿Cómo incorporo <span class="font-bold italic">HERMES</span> a mi negocio?
     </h1>
-    <h2 class="text-base italic font-bold md:text-2xl">
+    <h2 class="text-base font-bold italic md:text-2xl">
       ¡Es muy fácil! Solo tenés que seguir estos pasos:
     </h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-full items-center">
+    <div class="grid h-full grid-cols-1 items-center gap-4 md:grid-cols-3">
       <AddToMyBusinessCard
         title="Desarrollo"
-        description="Desarrollamos tu agente virtual a medida, según tus necesidades y requerimientos"
+        description="Desarrollamos tu asistente virtual a medida, según tus necesidades y requerimientos"
       >
         <LaptopIcon />
       </AddToMyBusinessCard>
 
       <AddToMyBusinessCard
         title="Activación"
-        description="Activamos tu agente virtual en tu WhatsApp, listo para trabajar"
+        description="Activamos tu asistente virtual en tu WhatsApp, listo para trabajar"
       >
         <WhatsappIcon />
       </AddToMyBusinessCard>

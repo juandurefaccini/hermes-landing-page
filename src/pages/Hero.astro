@@ -18,68 +18,66 @@ const initialBusinessName = businessTypes[0];
 ---
 
 <section
-  class="flex flex-col justify-center bg-secondary text-center md:h-screen md:text-left"
+  class="flex flex-col justify-center bg-secondary py-16 text-center tracking-tighter md:h-dvh md:py-24 md:text-left"
 >
   <div
-    class="container mx-auto h-full w-full auto-rows-fr p-4 py-24 md:grid md:max-w-6xl md:grid-cols-12 md:items-stretch md:gap-4 md:py-16 xl:max-w-7xl"
+    class="container mx-auto h-full w-full auto-rows-fr md:grid md:max-w-6xl md:grid-cols-12 md:items-stretch md:gap-4 xl:max-w-7xl"
   >
-    <div class="flex h-full flex-col justify-between md:col-span-8">
-      <div class="h-full">
-        <h1
-          class="animate-fade-in text-6xl font-bold italic text-primary md:text-8xl"
-        >
-          HERMES
-        </h1>
-        <p
-          class="animate-fade-in animate-delay-200 mt-6 text-2xl not-italic md:text-4xl 2xl:text-5xl"
-        >
-          Tu <span
-            id="businessType"
-            class="font-bold italic text-primary transition-opacity duration-500 ease-in-out"
-            >{initialBusinessName}</span
-          ><br /> ahora más cerca de tus clientes
-        </p>
-        <p
-          class="text-md animate-fade-in animate-delay-400 mt-4 md:text-xl 2xl:text-3xl"
-        >
-          Generamos agentes personalizados que, a través de <span
-            class="font-bold text-primary">Whatsapp</span
-          >, te permiten manejar tu negocio de manera más eficiente
-        </p>
-        <p class="text-md animate-fade-in animate-delay-600 mt-4 md:text-xl">
-          Trabajá tranquilo, <span class="font-bold italic">HERMES</span> se encarga
-          del resto
-        </p>
-      </div>
+    <div class="flex h-full flex-col justify-center md:col-span-8">
+      <h1
+        class="animate-fade-in text-6xl font-bold italic text-primary md:text-8xl"
+      >
+        HERMES
+      </h1>
+      <p
+        class="animate-fade-in animate-delay-200 mt-6 text-2xl md:text-4xl 2xl:text-5xl"
+      >
+        Tu <span
+          id="businessType"
+          class="font-bold italic text-primary transition-opacity duration-500 ease-in-out"
+          >{initialBusinessName}</span
+        ><br /> ahora más cerca de tus clientes
+      </p>
+      <p
+        class="text-md animate-fade-in animate-delay-400 mt-4 md:text-xl 2xl:text-3xl"
+      >
+        Generamos agentes personalizados que, a través de <span
+          class="font-bold text-primary">Whatsapp</span
+        >, te permiten manejar tu negocio de manera más eficiente
+      </p>
+      <p
+        class="text-md animate-fade-in animate-delay-600 mt-4 md:text-xl 2xl:text-3xl"
+      >
+        Trabajá tranquilo, <span class="font-bold italic">HERMES</span> se encarga
+        del resto
+      </p>
       <div>
         <div
-          class="md:text-md animate-fade-in animate-delay-800 mt-6 flex h-12 w-full items-center justify-center gap-2 font-bold text-text md:justify-start"
+          class="md:text-md animate-fade-in animate-delay-800 mt-6 flex h-12 items-center justify-center gap-2 font-bold text-text md:justify-start"
         >
           Funcionando gracias a <Image
             src={MetaLogo}
             alt="Meta Logo"
-            class="aspect-auto h-full w-auto"
+            class="aspect-auto h-full w-min"
           />
         </div>
         <div
           class="animate-fade-in animate-delay-1000 mt-6 flex w-full flex-col gap-2 md:flex-row md:gap-8"
         >
-          <div>
-            <a href="#cta" class="w-full">
-              <Button variant="primary">
-                <span class="text-sm md:text-lg">QUIERO MI ASISTENTE</span>
-              </Button>
-            </a>
-          </div>
-          <div>
-            <a href="#cta" class="w-full">
-              <Button class="whitespace-nowrap" variant="primary">
-                <span class="px-2 text-sm md:text-lg"
-                  >COMUNICARME CON VENTAS</span
-                >
-              </Button>
-            </a>
-          </div>
+          <a href="#cta" class="w-full">
+            <Button variant="primary">
+              <span class="text-sm font-semibold tracking-wide md:text-lg"
+                >QUIERO MI ASISTENTE</span
+              >
+            </Button>
+          </a>
+          <a href="#cta" class="w-full">
+            <Button class="whitespace-nowrap" variant="primary">
+              <span class="px-2 text-sm font-semibold tracking-wide md:text-lg"
+                >COMUNICARME CON VENTAS</span
+              >
+            </Button>
+          </a>
         </div>
       </div>
     </div>
@@ -155,28 +153,19 @@ const initialBusinessName = businessTypes[0];
 
     function updateContent() {
       const businessTypeElement = document.getElementById("businessType");
-      // const phoneScreenElement = document.getElementById("phoneScreen");
 
       if (businessTypeElement) {
-        // Fade out
         businessTypeElement.style.opacity = "0";
-        // phoneScreenElement.style.opacity = "0";
 
         setTimeout(() => {
-          // Update content
           businessTypeElement.textContent = businessTypes[currentIndex];
-          // phoneScreenElement.src = phoneScreens[currentIndex];
-
-          // Fade in
           businessTypeElement.style.opacity = "1";
-          // phoneScreenElement.style.opacity = "1";
         }, 250);
       }
 
       currentIndex = (currentIndex + 1) % businessTypes.length;
     }
 
-    // Update content every 3 seconds
     setInterval(updateContent, 3000);
   </script>
 </section>

@@ -1,0 +1,129 @@
+---
+import Card from "../components/prices/Card.astro";
+import CardHeader from "../components/prices/CardHeader.astro";
+import CardTitle from "../components/prices/CardTitle.astro";
+import CardContent from "../components/prices/CardContent.astro";
+import Check from "../components/prices/Check.astro";
+import Button from "../components/Button.astro";
+import PriceCardRow from "../components/prices/PriceCardRow.astro";
+import Checkbox from "../components/prices/Checkbox.astro";
+import MetaSvgIcon from "../components/icons/MetaSvgIcon.astro";
+import IAIcon from "../components/icons/IAIcon.astro";
+---
+
+<section id="pricing" class="w-full py-12 md:py-24 lg:py-32">
+  <div class="container mx-auto px-4 md:px-6">
+    <h2
+      class="mb-6 text-center text-3xl font-bold tracking-tighter md:text-5xl"
+    >
+      Inversión
+    </h2>
+    <h3
+      class="mb-12 text-center text-xl font-medium tracking-tighter sm:text-3xl"
+    >
+      Elegí el plan que mejor se adapte a tus necesidades
+    </h3>
+
+    <div class="mb-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <Card>
+        <CardHeader>
+          <!-- <h4 class="bg-primary text-white">
+            Ideal para brindar información de tu negocio, emprendimiento o de tu
+            marca
+          </h4> -->
+          <CardTitle>Plan Informativo</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div class="text-3xl font-bold">$40.000/mes</div>
+          <ul class="mt-4 space-y-2">
+            <PriceCardRow
+              >Responder preguntas de tu centro de turismo
+            </PriceCardRow>
+            <PriceCardRow>Resolver preguntas frecuentes</PriceCardRow>
+            <PriceCardRow
+              >Brindar información relevante como horarios o ubicación
+            </PriceCardRow>
+          </ul>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <!-- <h4 class="bg-primary text-white">
+            Ideal para agendar turnos en tu peluquería, tu consultorio, alquilar
+            tu cancha
+          </h4> -->
+          <CardTitle>Gestor de turnos</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div class="text-3xl font-bold">$60.000/mes</div>
+          <ul class="mt-4 space-y-2">
+            <PriceCardRow
+              >Todo lo que incluye el plan <span
+                class="font-extrabold text-primary">informativo</span
+              >
+            </PriceCardRow>
+            <PriceCardRow>Reservar turnos de pádel</PriceCardRow>
+            <PriceCardRow>Tomar turnos de peluqería</PriceCardRow>
+            <PriceCardRow>Agendar turnos para manicura</PriceCardRow>
+            <PriceCardRow>Gestiona tu consultorio</PriceCardRow>
+          </ul>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <!-- <h4 class="bg-primary text-white">
+            Tu asistente personalizado para tu negocio, con las integraciones
+            que necesites
+          </h4> -->
+          <CardTitle>Personalizado</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div class="text-3xl font-bold">A definir</div>
+          <ul class="mt-4 space-y-2">
+            <PriceCardRow>Panel de control en tiempo real</PriceCardRow>
+            <PriceCardRow>Adaptado a medida</PriceCardRow>
+            <PriceCardRow>Notificaciones a traves de WhatsApp</PriceCardRow>
+            <PriceCardRow>Registro de conversaciones </PriceCardRow>
+            <PriceCardRow>Responder y generar mensajes de voz </PriceCardRow>
+            <PriceCardRow>Flujos de conversación avanzados </PriceCardRow>
+          </ul>
+        </CardContent>
+      </Card>
+    </div>
+
+    <h3
+      class="mb-12 text-center text-xl font-semibold tracking-tighter sm:text-3xl"
+    >
+      Consultá por nuestros adicionales
+    </h3>
+
+    <div class="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
+      <div
+        class="flex items-center justify-between overflow-hidden rounded-lg bg-[#0080FB] p-6 text-white shadow-md"
+      >
+        <div class="flex flex-col">
+          <div class="text-2xl font-semibold">Mejora tu presencia con Meta</div>
+          <div class="mt-2 text-sm">
+            Aprovechá la tecnología de Meta para mejorar tus conversaciones
+          </div>
+        </div>
+        <MetaSvgIcon class="h-48 w-48" color="white" />
+      </div>
+      <div
+        class="flex items-center justify-between overflow-hidden rounded-lg bg-[#ED254E] p-6 text-white shadow-md"
+      >
+        <div class="flex flex-col">
+          <div class="text-2xl font-semibold">
+            Mejorar tus conversaciones con Inteligencia Artificial
+          </div>
+          <div class="mt-2 text-sm">
+            Usá la IA para mejorar generar flujos de conversación más efectivos
+            y eficientes
+          </div>
+        </div>
+
+        <IAIcon class="h-24 w-24" />
+      </div>
+    </div>
+  </div>
+</section>
