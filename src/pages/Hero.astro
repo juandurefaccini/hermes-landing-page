@@ -1,7 +1,8 @@
 ---
 import Button from "../components/Button.astro";
 import MetaLogo from "../images/Meta-Logo.png";
-import PhoneScreen2 from "../images/phone2.png";
+// import PhoneScreen2 from "../images/webm/junbbweb.webm";
+import juanbbweb from "../images/webm/phone.webm";
 import { Image } from "astro:assets";
 
 const businessTypes = [
@@ -51,46 +52,57 @@ const initialBusinessName = businessTypes[0];
         Trabajá tranquilo, <span class="font-bold italic">HERMES</span> se encarga
         del resto
       </p>
-      <div>
-        <div
-          class="md:text-md animate-fade-in animate-delay-800 mt-6 flex h-12 items-center justify-center gap-2 font-bold text-text md:justify-start"
-        >
-          Funcionando gracias a <Image
-            src={MetaLogo}
-            alt="Meta Logo"
-            class="aspect-auto h-full w-min"
-          />
-        </div>
-        <div
-          class="animate-fade-in animate-delay-1000 mt-6 flex w-full flex-col gap-2 md:flex-row md:gap-8"
-        >
-          <a href="#cta" class="w-full">
-            <Button variant="primary">
-              <span class="text-sm font-semibold tracking-wide md:text-lg"
-                >QUIERO MI ASISTENTE</span
-              >
-            </Button>
-          </a>
-          <a href="#cta" class="w-full">
-            <Button class="whitespace-nowrap" variant="primary">
-              <span class="px-2 text-sm font-semibold tracking-wide md:text-lg"
-                >COMUNICARME CON VENTAS</span
-              >
-            </Button>
-          </a>
-        </div>
+
+      <!-- Meta -->
+      <div
+        class="md:text-md animate-fade-in animate-delay-800 mt-6 flex h-12 items-center justify-center gap-2 font-bold text-text md:justify-start"
+      >
+        Funcionando gracias a <Image
+          src={MetaLogo}
+          alt="Meta Logo"
+          class="aspect-auto h-full w-min"
+        />
+      </div>
+
+      <!-- Botones -->
+      <div
+        class="animate-fade-in animate-delay-1000 mt-6 flex gap-2 md:flex-row md:gap-8"
+      >
+        <a href="#cta" class="">
+          <Button variant="primary">
+            <span class="text-sm font-semibold tracking-wide md:text-lg"
+              >QUIERO MI ASISTENTE</span
+            >
+          </Button>
+        </a>
+        <a href="#cta" class="">
+          <Button class="whitespace-nowrap" variant="primary">
+            <span class="px-2 text-sm font-semibold tracking-wide md:text-lg"
+              >COMUNICARME CON VENTAS</span
+            >
+          </Button>
+        </a>
       </div>
     </div>
-    <div class="md:col-span-1"></div>
     <div
-      class="animate-delay-1200 animate-fade-in mt-6 flex h-full items-end p-4 sm:p-0 md:col-span-3 md:mt-0"
+      class="animate-delay-1200 animate-fade-in mt-6 flex h-full items-end p-4 sm:p-0 md:col-span-4 md:mt-0"
     >
-      <Image
+      <!-- <Image
         id="phoneScreen"
-        src={PhoneScreen2}
+        src={juanbbweb}
+        inferSize
         alt="Phone screen example"
         class="aspect-[9/20] h-full rounded-xl object-contain transition-opacity duration-500 ease-in-out"
-      />
+      /> -->
+      <video
+        id="phoneScreen"
+        src={juanbbweb}
+        mediagroup="phoneScreen"
+        autoplay
+        loop
+        muted
+        playsinline
+        class="h-full rounded-xl object-contain"></video>
     </div>
   </div>
 

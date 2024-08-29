@@ -3,10 +3,7 @@ import Card from "../components/prices/Card.astro";
 import CardHeader from "../components/prices/CardHeader.astro";
 import CardTitle from "../components/prices/CardTitle.astro";
 import CardContent from "../components/prices/CardContent.astro";
-import Check from "../components/prices/Check.astro";
-import Button from "../components/Button.astro";
 import PriceCardRow from "../components/prices/PriceCardRow.astro";
-import Checkbox from "../components/prices/Checkbox.astro";
 import MetaSvgIcon from "../components/icons/MetaSvgIcon.astro";
 import IAIcon from "../components/icons/IAIcon.astro";
 ---
@@ -102,27 +99,33 @@ import IAIcon from "../components/icons/IAIcon.astro";
         class="flex items-center justify-between overflow-hidden rounded-lg bg-[#0080FB] p-6 text-white shadow-md"
       >
         <div class="flex flex-col">
-          <div class="text-2xl font-semibold">Mejora tu presencia con Meta</div>
+          <div class="text-lg font-semibold sm:text-2xl">
+            Mejora tu presencia con Meta
+          </div>
           <div class="mt-2 text-sm">
             Aprovechá la tecnología de Meta para mejorar tus conversaciones
           </div>
         </div>
-        <MetaSvgIcon class="h-48 w-48" color="white" />
+
+        <div class="flex w-1/5 shrink-0 grow-0 justify-center">
+          <MetaSvgIcon color="white" />
+        </div>
       </div>
       <div
         class="flex items-center justify-between overflow-hidden rounded-lg bg-[#ED254E] p-6 text-white shadow-md"
       >
         <div class="flex flex-col">
-          <div class="text-2xl font-semibold">
-            Mejorar tus conversaciones con Inteligencia Artificial
+          <div class="texto-lg font-semibold sm:text-2xl">
+            Mejorar tus conversaciones con IA
           </div>
           <div class="mt-2 text-sm">
-            Usá la IA para mejorar generar flujos de conversación más efectivos
-            y eficientes
+            Aprovechá la Inteligencia Artificial para generar flujos de
+            conversación más efectivos y eficientes
           </div>
         </div>
-
-        <IAIcon class="h-24 w-24" />
+        <div class="flex w-1/5 shrink-0 grow-0 justify-center">
+          <IAIcon size={48} />
+        </div>
       </div>
     </div>
   </div>
