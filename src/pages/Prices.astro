@@ -1,4 +1,5 @@
 ---
+// pricing.astro
 import Card from "../components/prices/Card.astro";
 import CardHeader from "../components/prices/CardHeader.astro";
 import CardTitle from "../components/prices/CardTitle.astro";
@@ -60,6 +61,14 @@ const additionals = [
 ];
 ---
 
+<style>
+  .active-button {
+    background-color: #ffffff;
+    border: 2px solid #008000;
+    color: #008000;
+  }
+</style>
+
 <section id="pricing" class="w-full py-12 md:py-24 lg:py-32">
   <div class="container mx-auto px-4 md:px-6">
     <h2
@@ -92,8 +101,11 @@ const additionals = [
                     ))}
                   </ul>
                 </div>
-                <button class="hover:bg-primary-dark mt-4 w-full rounded bg-primary px-4 py-2 text-sm text-white">
-                  Consultar por este plan
+                <button
+                  class="hover:bg-primary-dark mt-4 w-full rounded bg-primary px-4 py-2 text-sm text-white transition-colors"
+                  data-plan={plan.title}
+                >
+                  Quiero este plan
                 </button>
               </div>
             </CardContent>
@@ -129,3 +141,59 @@ const additionals = [
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll("button[data-plan]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const isActive = button.classList.contains("active-button");
+
+      // Remove active state from all buttons
+      document.querySelectorAll("button[data-plan]").forEach((btn) => {
+        btn.classList.remove("active-button");
+        btn.innerText = "Quiero este plan";
+      });
+
+      if (!isActive) {
+        // Add active state to the clicked button
+        button.classList.add("active-button");
+        button.innerText = "Plan seleccionado";
+
+        // Update hidden input and display selected plan
+        const selectedPlan = button.getAttribute("data-plan");
+
+        // Use localStorage to store the selected plan
+        localStorage.setItem("selectedPlan", selectedPlan);
+
+        // Dispatch a custom event to notify the contact form
+        window.dispatchEvent(
+          new CustomEvent("planSelected", { detail: selectedPlan })
+        );
+
+        // Scroll to the contact form
+        document.getElementById("contact").scrollIntoView({
+          behavior: "smooth",
+        });
+      } else {
+        // Clear the selected plan
+        localStorage.removeItem("selectedPlan");
+
+        // Dispatch a custom event to notify the contact form
+        window.dispatchEvent(new CustomEvent("planSelected", { detail: null }));
+      }
+    });
+  });
+
+  // Check for previously selected plan on page load
+  document.addEventListener("DOMContentLoaded", () => {
+    const selectedPlan = localStorage.getItem("selectedPlan");
+    if (selectedPlan) {
+      const button = document.querySelector(
+        `button[data-plan="${selectedPlan}"]`
+      );
+      if (button) {
+        button.classList.add("active-button");
+        button.innerText = "Plan seleccionado";
+      }
+    }
+  });
+</script>
