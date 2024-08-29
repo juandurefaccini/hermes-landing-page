@@ -6,6 +6,58 @@ import CardContent from "../components/prices/CardContent.astro";
 import PriceCardRow from "../components/prices/PriceCardRow.astro";
 import MetaSvgIcon from "../components/icons/MetaSvgIcon.astro";
 import IAIcon from "../components/icons/IAIcon.astro";
+
+const plans = [
+  {
+    title: "Plan Informativo",
+    price: "$40.000/mes",
+    features: [
+      "Responder preguntas de tu centro de turismo",
+      "Resolver preguntas frecuentes",
+      "Brindar información relevante como horarios o ubicación",
+    ],
+  },
+  {
+    title: "Gestor de turnos",
+    price: "$60.000/mes",
+    features: [
+      "Todo lo que incluye el plan <span class='font-extrabold text-primary'>informativo</span>",
+      "Reservar turnos de pádel",
+      "Tomar turnos de peluquería",
+      "Agendar turnos para manicura",
+      "Gestiona tu consultorio",
+    ],
+  },
+  {
+    title: "Personalizado",
+    price: "A definir",
+    features: [
+      "Panel de control en tiempo real",
+      "Adaptado a medida",
+      "Notificaciones a través de WhatsApp",
+      "Registro de conversaciones",
+      "Responder y generar mensajes de voz",
+      "Flujos de conversación avanzados",
+    ],
+  },
+];
+
+const additionals = [
+  {
+    title: "Mejora tu presencia con Meta",
+    description:
+      "Aprovechá la tecnología de Meta para mejorar tus conversaciones",
+    bgColor: "bg-[#0080FB]",
+    icon: MetaSvgIcon,
+  },
+  {
+    title: "Mejorar tus conversaciones con IA",
+    description:
+      "Aprovechá la Inteligencia Artificial para generar flujos de conversación más efectivos y eficientes",
+    bgColor: "bg-[#ED254E]",
+    icon: IAIcon,
+  },
+];
 ---
 
 <section id="pricing" class="w-full py-12 md:py-24 lg:py-32">
@@ -22,70 +74,32 @@ import IAIcon from "../components/icons/IAIcon.astro";
     </h3>
 
     <div class="mb-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      <Card>
-        <CardHeader>
-          <!-- <h4 class="bg-primary text-white">
-            Ideal para brindar información de tu negocio, emprendimiento o de tu
-            marca
-          </h4> -->
-          <CardTitle>Plan Informativo</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div class="text-3xl font-bold">$40.000/mes</div>
-          <ul class="mt-4 space-y-2">
-            <PriceCardRow
-              >Responder preguntas de tu centro de turismo
-            </PriceCardRow>
-            <PriceCardRow>Resolver preguntas frecuentes</PriceCardRow>
-            <PriceCardRow
-              >Brindar información relevante como horarios o ubicación
-            </PriceCardRow>
-          </ul>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
-          <!-- <h4 class="bg-primary text-white">
-            Ideal para agendar turnos en tu peluquería, tu consultorio, alquilar
-            tu cancha
-          </h4> -->
-          <CardTitle>Gestor de turnos</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div class="text-3xl font-bold">$60.000/mes</div>
-          <ul class="mt-4 space-y-2">
-            <PriceCardRow
-              >Todo lo que incluye el plan <span
-                class="font-extrabold text-primary">informativo</span
-              >
-            </PriceCardRow>
-            <PriceCardRow>Reservar turnos de pádel</PriceCardRow>
-            <PriceCardRow>Tomar turnos de peluqería</PriceCardRow>
-            <PriceCardRow>Agendar turnos para manicura</PriceCardRow>
-            <PriceCardRow>Gestiona tu consultorio</PriceCardRow>
-          </ul>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
-          <!-- <h4 class="bg-primary text-white">
-            Tu asistente personalizado para tu negocio, con las integraciones
-            que necesites
-          </h4> -->
-          <CardTitle>Personalizado</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div class="text-3xl font-bold">A definir</div>
-          <ul class="mt-4 space-y-2">
-            <PriceCardRow>Panel de control en tiempo real</PriceCardRow>
-            <PriceCardRow>Adaptado a medida</PriceCardRow>
-            <PriceCardRow>Notificaciones a traves de WhatsApp</PriceCardRow>
-            <PriceCardRow>Registro de conversaciones </PriceCardRow>
-            <PriceCardRow>Responder y generar mensajes de voz </PriceCardRow>
-            <PriceCardRow>Flujos de conversación avanzados </PriceCardRow>
-          </ul>
-        </CardContent>
-      </Card>
+      {
+        plans.map((plan) => (
+          <Card>
+            <CardHeader>
+              <CardTitle>{plan.title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div class="flex h-80 flex-col justify-between">
+                <div>
+                  <div class="text-3xl font-bold">{plan.price}</div>
+                  <ul class="mt-4 space-y-2">
+                    {plan.features.map((feature) => (
+                      <PriceCardRow>
+                        <Fragment set:html={feature} />
+                      </PriceCardRow>
+                    ))}
+                  </ul>
+                </div>
+                <button class="hover:bg-primary-dark mt-4 w-full rounded bg-primary px-4 py-2 text-sm text-white">
+                  Consultar por este plan
+                </button>
+              </div>
+            </CardContent>
+          </Card>
+        ))
+      }
     </div>
 
     <h3
@@ -95,38 +109,23 @@ import IAIcon from "../components/icons/IAIcon.astro";
     </h3>
 
     <div class="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
-      <div
-        class="flex items-center justify-between overflow-hidden rounded-lg bg-[#0080FB] p-6 text-white shadow-md"
-      >
-        <div class="flex flex-col">
-          <div class="text-lg font-semibold sm:text-2xl">
-            Mejora tu presencia con Meta
+      {
+        additionals.map((additional) => (
+          <div
+            class={`flex items-center justify-between overflow-hidden rounded-lg ${additional.bgColor} p-6 text-white shadow-md`}
+          >
+            <div class="flex flex-col">
+              <div class="text-lg font-semibold sm:text-2xl">
+                {additional.title}
+              </div>
+              <div class="mt-2 text-sm">{additional.description}</div>
+            </div>
+            <div class="flex w-1/5 shrink-0 grow-0 justify-center">
+              <additional.icon color="white" size={48} />
+            </div>
           </div>
-          <div class="mt-2 text-sm">
-            Aprovechá la tecnología de Meta para mejorar tus conversaciones
-          </div>
-        </div>
-
-        <div class="flex w-1/5 shrink-0 grow-0 justify-center">
-          <MetaSvgIcon color="white" />
-        </div>
-      </div>
-      <div
-        class="flex items-center justify-between overflow-hidden rounded-lg bg-[#ED254E] p-6 text-white shadow-md"
-      >
-        <div class="flex flex-col">
-          <div class="texto-lg font-semibold sm:text-2xl">
-            Mejorar tus conversaciones con IA
-          </div>
-          <div class="mt-2 text-sm">
-            Aprovechá la Inteligencia Artificial para generar flujos de
-            conversación más efectivos y eficientes
-          </div>
-        </div>
-        <div class="flex w-1/5 shrink-0 grow-0 justify-center">
-          <IAIcon size={48} />
-        </div>
-      </div>
+        ))
+      }
     </div>
   </div>
 </section>
