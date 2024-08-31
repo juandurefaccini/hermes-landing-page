@@ -1,0 +1,24 @@
+---
+import Button from "../components/Button.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Gracias por comunicarte!">
+  <section
+    class="flex min-h-screen flex-col items-center justify-center bg-secondary text-center"
+  >
+    <div class="container mx-auto p-4">
+      <h1 class="mb-4 text-4xl font-bold text-primary">
+        ¡Mensaje enviado con éxito!
+      </h1>
+      <p class="mb-8 text-lg">
+        Gracias por contactarnos. Nos pondremos en contacto contigo pronto.
+      </p>
+      <a href="/">
+        <Button variant="primary">
+          <span>Volver al inicio</span>
+        </Button>
+      </a>
+    </div>
+  </section>
+</Layout>

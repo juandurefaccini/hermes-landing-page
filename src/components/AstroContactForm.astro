@@ -1,0 +1,132 @@
+---
+
+---
+
+<form id="contact-form" class="space-y-6">
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div class="space-y-2">
+      <label for="first-name" class="block text-sm font-medium text-gray-700">
+        Nombre
+      </label>
+      <input
+        id="first-name"
+        name="first-name"
+        type="text"
+        autocomplete="given-name"
+        placeholder="Ingresá tu nombre"
+        required
+        class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-primary sm:text-sm"
+      />
+      <p class="text-sm text-red-600" id="first-name-error"></p>
+    </div>
+    <div class="space-y-2">
+      <label for="phone-number" class="block text-sm font-medium text-gray-700">
+        Teléfono
+      </label>
+      <input
+        id="phone-number"
+        name="phone-number"
+        type="text"
+        autocomplete="tel"
+        placeholder="Tu número de teléfono"
+        required
+        class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-primary sm:text-sm"
+      />
+      <p class="text-sm text-red-600" id="phone-number-error"></p>
+    </div>
+  </div>
+  <div class="space-y-2">
+    <label for="email" class="block text-sm font-medium text-gray-700">
+      Email
+    </label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      autocomplete="email"
+      placeholder="Ingresá tu correo"
+      required
+      class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-primary sm:text-sm"
+    />
+    <p class="text-sm text-red-600" id="email-error"></p>
+  </div>
+  <div class="space-y-2">
+    <label for="message" class="block text-sm font-medium text-gray-700">
+      Mensaje
+    </label>
+    <div>
+      <div class="flex items-center space-x-2">
+        <p class="text-sm text-gray-500">¿En qué podemos ayudarte?</p>
+      </div>
+      <textarea
+        id="message"
+        name="message"
+        rows={4}
+        placeholder="Quiero agendar una reunión. Tengo una duda. Otra consulta..."
+        required
+        class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-primary sm:text-sm"
+      ></textarea>
+      <p class="text-sm text-red-600" id="message-error"></p>
+    </div>
+
+    <div class="flex w-full pt-4 text-center">
+      <button
+        type="submit"
+        class="grow rounded-3xl border bg-primary px-4 py-2 font-medium text-white"
+      >
+        Enviar
+      </button>
+    </div>
+  </div>
+</form>
+
+<div id="form-message" class="mt-4 hidden text-sm"></div>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const formMessage = document.getElementById("form-message") as HTMLDivElement;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    formMessage.classList.add("hidden");
+
+    // Clear previous error messages
+    document.querySelectorAll('[id$="-error"]').forEach((el) => {
+      (el as HTMLElement).textContent = "";
+    });
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        window.location.href = "/success";
+      } else {
+        formMessage.textContent =
+          "Por favor, corrige los errores en el formulario.";
+        formMessage.classList.remove("hidden");
+        formMessage.classList.add("text-red-600");
+
+        // Display field-specific errors
+        for (const [field, error] of Object.entries(result.errors)) {
+          const errorElement = document.getElementById(`${field}-error`);
+          if (errorElement) {
+            errorElement.textContent = error as string;
+          }
+        }
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      formMessage.textContent =
+        "Error al enviar el mensaje. Por favor, inténtalo de nuevo.";
+      formMessage.classList.remove("hidden");
+      formMessage.classList.add("text-red-600");
+    }
+  });
+</script>

@@ -10,7 +10,13 @@ dotenv.config();
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react()],
+  integrations: [
+    tailwind(),
+    react({
+      // Options
+      experimentalReactChildren: true,
+    }),
+  ],
   output: "server",
   adapter: node({
     mode: "standalone",

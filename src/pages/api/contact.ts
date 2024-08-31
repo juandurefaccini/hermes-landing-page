@@ -1,52 +1,49 @@
 import type { APIRoute } from "astro";
-import nodemailer from "nodemailer";
-
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD,
-  },
-});
+import { sendContactEmail } from "../../utils/email";
 
 export const POST: APIRoute = async ({ request }) => {
+  const data = await request.formData();
+  const firstName = data.get("first-name");
+  const phoneNumber = data.get("phone-number");
+  const email = data.get("email");
+  const message = data.get("message");
+
+  const errors: Record<string, string> = {};
+  if (typeof firstName !== "string" || firstName.trim().length < 1) {
+    errors.firstName = "Por favor, ingresa tu nombre.";
+  }
+  if (typeof phoneNumber !== "string" || phoneNumber.trim().length < 1) {
+    errors.phoneNumber = "Por favor, ingresa tu número de teléfono.";
+  }
+  if (typeof email !== "string" || !email.includes("@")) {
+    errors.email = "Correo electrónico no válido.";
+  }
+  if (typeof message !== "string" || message.trim().length < 1) {
+    errors.message = "Por favor, ingresa un mensaje.";
+  }
+
+  if (Object.keys(errors).length > 0) {
+    return new Response(JSON.stringify({ success: false, errors }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
   try {
-    const data = await request.formData();
-    const name = data.get("first-name");
-    const phone = data.get("phone-number");
-    const email = data.get("email");
-    const message = data.get("message");
-
-    if (!name || !phone || !email || !message) {
-      return new Response(
-        JSON.stringify({ message: "Todos los campos son requeridos!" }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-    }
-
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
-      subject: "Nuevo mensaje de formulario de contacto",
-      text: `Nombre: ${name}\nTeléfono: ${phone}\nEmail: ${email}\nMensaje: ${message}`,
-    };
-
-    await transporter.sendMail(mailOptions);
-
-    return new Response(
-      JSON.stringify({ message: "¡Mensaje enviado con éxito!" }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      }
+    await sendContactEmail(
+      firstName as string,
+      phoneNumber as string,
+      email as string,
+      message as string
     );
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error(error);
     return new Response(
-      JSON.stringify({ message: "Error interno del servidor" }),
+      JSON.stringify({ success: false, error: "Error al enviar el mensaje." }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },

@@ -1,5 +1,5 @@
-import { useState, type FormEventHandler } from "react";
-import Button from "./Button.astro";
+import React, { useRef, useState, type FormEventHandler } from "react";
+import Captcha from "./Captcha";
 
 export default function ContactForm() {
   const [firstName, setFirstName] = useState("");
@@ -20,7 +20,6 @@ export default function ContactForm() {
 
     const currentTime = Date.now();
     if (lastSubmissionTime && currentTime - lastSubmissionTime < 60000) {
-      // 1 minute cooldown
       setFormMessage({
         type: "error",
         text: "Por favor, espera un momento antes de enviar otro mensaje.",
@@ -43,14 +42,24 @@ export default function ContactForm() {
         body: formData,
       });
 
+      const result = await response.json();
+
       if (response.ok) {
         setFormMessage({
           type: "success",
-          text: "¡Mensaje enviado con éxito!",
+          text: result.message || "¡Mensaje enviado con éxito!",
         });
         setLastSubmissionTime(currentTime);
+        // Reset form fields
+        setFirstName("");
+        setPhoneNumber("");
+        setEmail("");
+        setMessage("");
       } else {
-        setFormMessage({ type: "error", text: "Error al enviar el mensaje." });
+        setFormMessage({
+          type: "error",
+          text: result.message || "Error al enviar el mensaje.",
+        });
       }
     } catch (error) {
       console.error("Error:", error);
@@ -143,13 +152,13 @@ export default function ContactForm() {
             className="block border-gray-300 focus:border-primary shadow-sm mt-1 px-3 py-2 border rounded-md w-full focus:outline-none focus:ring-primary sm:text-sm"
           ></textarea>
         </div>
+        <Captcha />
+
         <div className="flex pt-4 w-full text-center">
           <button
             disabled={isLoading}
-            type={"submit"}
-            className={
-              "grow px-4 py-2 rounded-3xl border bg-primary text-white font-medium "
-            }
+            type="submit"
+            className="bg-primary px-4 py-2 border rounded-3xl font-medium text-white grow"
           >
             {isLoading ? "Enviando..." : "Enviar"}
           </button>
