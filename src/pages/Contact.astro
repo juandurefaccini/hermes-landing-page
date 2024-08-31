@@ -1,0 +1,161 @@
+---
+
+---
+
+<section id="contact" class="w-full">
+  <div class="container mx-auto border-t px-4 py-12 md:px-6 md:py-24 lg:py-32">
+    <h2
+      class="mb-12 text-center text-3xl font-bold tracking-tighter sm:text-5xl"
+    >
+      Contactate con nuestro equipo
+    </h2>
+    <div class="mx-auto max-w-2xl rounded-lg bg-white p-8 shadow-lg">
+      <form class="space-y-6" aria-labelledby="contact-form">
+        <div id="plan-container" class="hidden">
+          <input type="hidden" id="contact-plan-input" name="plan" value="" />
+          <div class="space-y-2">
+            <label
+              for="contact-selected-plan"
+              class="block text-sm font-medium text-gray-700"
+            >
+              Plan Seleccionado
+            </label>
+            <div
+              id="contact-selected-plan"
+              class="mt-1 block w-full cursor-pointer rounded-md border border-primary bg-primary bg-opacity-10 px-3 py-2 font-medium text-primary shadow-sm transition-colors hover:bg-opacity-20 sm:text-sm"
+            >
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div class="space-y-2">
+            <label
+              for="first-name"
+              class="block text-sm font-medium text-gray-700">Nombre</label
+            >
+            <input
+              id="first-name"
+              name="first-name"
+              type="text"
+              autocomplete="given-name"
+              placeholder="Ingresá tu nombre"
+              required
+              aria-required="true"
+              aria-invalid="false"
+              class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-primary sm:text-sm"
+            />
+            <p id="first-name-error" class="hidden text-sm text-red-600">
+              Este campo es obligatorio.
+            </p>
+          </div>
+          <div class="space-y-2">
+            <label
+              for="last-name"
+              class="block text-sm font-medium text-gray-700">Teléfono</label
+            >
+            <input
+              id="last-name"
+              name="last-name"
+              type="text"
+              autocomplete="family-name"
+              placeholder="Tu número de teléfono (opcional)"
+              aria-invalid="false"
+              class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-primary sm:text-sm"
+            />
+          </div>
+        </div>
+        <div class="space-y-2">
+          <label for="email" class="block text-sm font-medium text-gray-700"
+            >Email</label
+          >
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder="Ingresá tu correo"
+            required
+            aria-required="true"
+            aria-invalid="false"
+            class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-primary sm:text-sm"
+          />
+          <p id="email-error" class="hidden text-sm text-red-600">
+            Por favor, ingresa un correo válido.
+          </p>
+        </div>
+        <div class="space-y-2">
+          <label for="message" class="block text-sm font-medium text-gray-700"
+            >Mensaje</label
+          >
+          <div>
+            <div class="flex items-center space-x-2">
+              <p class="text-sm text-gray-500">¿En qué podemos ayudarte?</p>
+            </div>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              placeholder="Quiero agendar una reunión. Tengo una duda. Otra consulta..."
+              required
+              aria-required="true"
+              aria-invalid="false"
+              class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-primary sm:text-sm"
+            ></textarea>
+            <p id="message-error" class="hidden text-sm text-red-600">
+              Este campo es obligatorio.
+            </p>
+          </div>
+        </div>
+        <div class="mt-12 text-center">
+          <button
+            type="submit"
+            class="hover:bg-primary-dark inline-flex w-full justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            >Enviar</button
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const planContainer = document.getElementById("plan-container");
+  const contactPlanInput = document.getElementById("contact-plan-input");
+  const contactSelectedPlan = document.getElementById("contact-selected-plan");
+
+  // Function to update the contact form with the selected plan
+  function updateContactForm(selectedPlan) {
+    if (selectedPlan) {
+      planContainer.classList.remove("hidden");
+      contactPlanInput.value = selectedPlan;
+      contactSelectedPlan.textContent = selectedPlan;
+    } else {
+      planContainer.classList.add("hidden");
+      contactPlanInput.value = "";
+      contactSelectedPlan.textContent = "";
+    }
+  }
+
+  // Function to deselect the plan
+  function deselectPlan() {
+    localStorage.removeItem("selectedPlan");
+    updateContactForm(null);
+    window.dispatchEvent(new CustomEvent("planDeselected"));
+  }
+
+  // Listen for the custom event from the pricing section
+  window.addEventListener("planSelected", (event) => {
+    updateContactForm(event.detail);
+  });
+
+  // Check for previously selected plan on page load
+  document.addEventListener("DOMContentLoaded", () => {
+    const selectedPlan = localStorage.getItem("selectedPlan");
+    updateContactForm(selectedPlan);
+  });
+
+  // Add click event to deselect plan
+  if (contactSelectedPlan) {
+    contactSelectedPlan.addEventListener("click", deselectPlan);
+  }
+</script>
