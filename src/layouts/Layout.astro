@@ -25,13 +25,13 @@ import { ViewTransitions } from "astro:transitions";
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Tu nuevo asistente" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
   </head>
-  <body class="border-purple-300 flex flex-col border bg-background text-text">
+  <body class="flex flex-col border border-purple-300 bg-background text-text">
     <!-- <NavBar /> -->
     <div class="grow">
       <slot />

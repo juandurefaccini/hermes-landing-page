@@ -4,11 +4,12 @@ import Hero from "./Hero.astro";
 import Advantages from "./Advantages.astro";
 import AddToMyBusiness from "./AddToMyBusiness.astro";
 import WorksForMyBusiness from "./WorksForMyBusiness.astro";
-import CTA from "./CTA.astro";
 import StickyCTA from "../components/StickyCTA.astro";
 import NavBar from "../components/NavBar.astro";
 import Contact from "./Contact.astro";
 import Prices from "./Prices.astro";
+import Button from "../components/Button.astro";
+import Banner from "../components/Banner.astro";
 ---
 
 <Layout title="Hermes">
@@ -24,26 +25,34 @@ import Prices from "./Prices.astro";
 
     <!-- Line -->
 
-    <section class="text-center">
-      <div class="m-4 rounded-xl border bg-primary">
-        <div
-          class="container mx-auto flex w-full flex-col gap-11 py-12 md:max-w-6xl md:py-24"
+    <Banner>
+      <h1
+        class="text-3xl font-medium uppercase italic tracking-tighter md:text-6xl"
+      >
+        Descubrí los beneficios de <span class="font-bold italic text-white"
+          >HERMES</span
         >
-          <h1
-            class="text-4xl font-medium uppercase italic tracking-tighter md:text-6xl"
-          >
-            Descubrí los beneficios de <span class="font-bold italic text-white"
-              >HERMES</span
-            >
-          </h1>
-        </div>
-      </div>
-    </section>
+      </h1>
+    </Banner>
 
     <Advantages />
     <!-- <AddToMyBusiness /> -->
     <!-- <WorksForMyBusiness /> -->
-    <CTA />
+    <Banner>
+      <h1
+        class="text-4xl font-medium uppercase italic tracking-tighter md:text-6xl"
+      >
+        ¿Qué esperás para agilizar tu negocio?
+      </h1>
+      <div>
+        <a href="mailto:stovia.tandil@gmail.com">
+          <Button variant="secondary">
+            <span>¡Contactate con nosotros!</span>
+          </Button>
+        </a>
+      </div>
+    </Banner>
+
     <Prices />
     <Contact />
     <StickyCTA />
