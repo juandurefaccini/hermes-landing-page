@@ -3,12 +3,19 @@ type Props = {
   variant?: "primary" | "secondary";
   class?: string;
   type?: "button" | "submit";
+  disabled?: boolean;
 };
 
-const { variant = "primary", class: className, type = "button" } = Astro.props;
+const {
+  variant = "primary",
+  class: className,
+  type = "button",
+  disabled = false,
+} = Astro.props;
 ---
 
 <button
+  disabled={disabled}
   type={type}
   class:list={[
     `grow px-4 py-2 rounded-3xl border`,

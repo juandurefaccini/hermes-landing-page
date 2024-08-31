@@ -1,24 +1,67 @@
-import Button from "./Button.astro";
 import { useState, type FormEventHandler } from "react";
+import Button from "./Button.astro";
 
 export default function ContactForm() {
-  const [responseMessage, setResponseMessage] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [formMessage, setFormMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+  const [lastSubmissionTime, setLastSubmissionTime] = useState<number | null>(
+    null
+  );
 
-  async function submit(e: SubmitEvent) {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-    console.log(Object.fromEntries(formData));
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      body: formData,
-    });
-    const data = await response.json();
-    if (data.message) {
-      setResponseMessage(data.message);
+
+    const currentTime = Date.now();
+    if (lastSubmissionTime && currentTime - lastSubmissionTime < 60000) {
+      // 1 minute cooldown
+      setFormMessage({
+        type: "error",
+        text: "Por favor, espera un momento antes de enviar otro mensaje.",
+      });
+      return;
     }
-  }
+
+    setIsLoading(true);
+    setFormMessage(null);
+
+    const formData = new FormData();
+    formData.append("first-name", firstName);
+    formData.append("phone-number", phoneNumber);
+    formData.append("email", email);
+    formData.append("message", message);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        setFormMessage({
+          type: "success",
+          text: "¡Mensaje enviado con éxito!",
+        });
+        setLastSubmissionTime(currentTime);
+      } else {
+        setFormMessage({ type: "error", text: "Error al enviar el mensaje." });
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setFormMessage({ type: "error", text: "Error al enviar el mensaje." });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <form className="space-y-6" onSubmit={submit}>
+    <form className="space-y-6" onSubmit={handleSubmit}>
       <div className="gap-6 grid grid-cols-1 md:grid-cols-2">
         <div className="space-y-2">
           <label
@@ -34,6 +77,8 @@ export default function ContactForm() {
             autoComplete="given-name"
             placeholder="Ingresá tu nombre"
             required
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
             className="block border-gray-300 focus:border-primary shadow-sm mt-1 px-3 py-2 border rounded-md w-full focus:outline-none focus:ring-primary sm:text-sm"
           />
         </div>
@@ -51,6 +96,8 @@ export default function ContactForm() {
             autoComplete="family-name"
             placeholder="Tu número de teléfono (opcional)"
             required
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
             className="block border-gray-300 focus:border-primary shadow-sm mt-1 px-3 py-2 border rounded-md w-full focus:outline-none focus:ring-primary sm:text-sm"
           />
         </div>
@@ -69,6 +116,8 @@ export default function ContactForm() {
           autoComplete="email"
           placeholder="Ingresá tu correo"
           required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="block border-gray-300 focus:border-primary shadow-sm mt-1 px-3 py-2 border rounded-md w-full focus:outline-none focus:ring-primary sm:text-sm"
         />
       </div>
@@ -89,13 +138,32 @@ export default function ContactForm() {
             rows={4}
             placeholder="Quiero agendar una reunión. Tengo una duda. Otra consulta..."
             required
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             className="block border-gray-300 focus:border-primary shadow-sm mt-1 px-3 py-2 border rounded-md w-full focus:outline-none focus:ring-primary sm:text-sm"
           ></textarea>
         </div>
         <div className="flex pt-4 w-full text-center">
-          <button type="submit">Enviar</button>
+          <button
+            disabled={isLoading}
+            type={"submit"}
+            className={
+              "grow px-4 py-2 rounded-3xl border bg-primary text-white font-medium "
+            }
+          >
+            {isLoading ? "Enviando..." : "Enviar"}
+          </button>
         </div>
       </div>
+      {formMessage && (
+        <div
+          className={`mt-4 text-sm ${
+            formMessage.type === "success" ? "text-green-600" : "text-red-600"
+          }`}
+        >
+          {formMessage.text}
+        </div>
+      )}
     </form>
   );
 }
