@@ -83,8 +83,9 @@
 <div id="form-message" class="mt-4 hidden text-sm"></div>
 
 <script>
-  const form = document.getElementById("contact-form") as HTMLFormElement;
-  const formMessage = document.getElementById("form-message") as HTMLDivElement;
+  const form = document.getElementById("contact-form");
+  const formMessage = document.getElementById("form-message");
+  const selectedPlanInput = document.getElementById("selected-plan");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -92,7 +93,7 @@
 
     // Clear previous error messages
     document.querySelectorAll('[id$="-error"]').forEach((el) => {
-      (el as HTMLElement).textContent = "";
+      el.textContent = "";
     });
 
     const formData = new FormData(form);
@@ -117,7 +118,7 @@
         for (const [field, error] of Object.entries(result.errors)) {
           const errorElement = document.getElementById(`${field}-error`);
           if (errorElement) {
-            errorElement.textContent = error as string;
+            errorElement.textContent = error;
           }
         }
       }
@@ -127,6 +128,19 @@
         "Error al enviar el mensaje. Por favor, inténtalo de nuevo.";
       formMessage.classList.remove("hidden");
       formMessage.classList.add("text-red-600");
+    }
+  });
+
+  // Listen for the custom event to update the selected plan
+  window.addEventListener("planSelected", (event) => {
+    selectedPlanInput.value = event.detail || "";
+  });
+
+  // Set the selected plan on page load if it exists in localStorage
+  document.addEventListener("DOMContentLoaded", () => {
+    const selectedPlan = localStorage.getItem("selectedPlan");
+    if (selectedPlan) {
+      selectedPlanInput.value = selectedPlan;
     }
   });
 </script>
