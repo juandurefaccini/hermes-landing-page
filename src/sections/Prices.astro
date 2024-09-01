@@ -1,5 +1,4 @@
 ---
-// pricing.astro
 import Card from "../components/prices/Card.astro";
 import CardHeader from "../components/prices/CardHeader.astro";
 import CardTitle from "../components/prices/CardTitle.astro";
@@ -10,89 +9,123 @@ import IAIcon from "../components/icons/IAIcon.astro";
 
 const plans = [
   {
-    title: "Plan Informativo",
-    price: "$40.000/mes",
+    title: "Pack Base",
+    subtitle: "Información básica de tu negocio",
+    price: "$40.000",
+    anualPrice: "$440.000",
     features: [
-      "Responder preguntas de tu centro de turismo",
-      "Resolver preguntas frecuentes",
-      "Brindar información relevante como horarios o ubicación",
+      "Responde preguntas frecuentes",
+      "Proporciona horarios y ubicación",
+      "Respuestas rápidas y precisas",
     ],
   },
   {
-    title: "Gestor de turnos",
-    price: "$60.000/mes",
+    title: "Pack Turnos",
+    subtitle: "Gestión de turnos y citas",
+    price: "$60.000",
+    anualPrice: "$660.000",
     features: [
-      "Todo lo que incluye el plan <span class='font-extrabold text-primary'>informativo</span>",
-      "Reservar turnos de pádel",
-      "Tomar turnos de peluquería",
-      "Agendar turnos para manicura",
-      "Gestiona tu consultorio",
+      "Incluye <span class='font-extrabold text-primary'>Pack Base</span>",
+      "Reserva de turnos eficiente",
+      "Gestión de citas y mesas",
+      "Optimiza consultorios y restaurantes",
+    ],
+  },
+  {
+    title: "Pack Pro",
+    subtitle: "Asistente virtual avanzado",
+    price: "$80.000",
+    anualPrice: "$880.000",
+    features: [
+      "Incluye <span class='font-extrabold text-primary'>Pack Turnos</span>",
+      "Reportes de actividad",
+      "Notificaciones a clientes",
+      "Registro de ventas",
+      "Optimización de negocio",
     ],
   },
   {
     title: "Personalizado",
+    subtitle: "Soluciones a medida",
     price: "A definir",
+    anualPrice: "A definir",
     features: [
       "Panel de control en tiempo real",
-      "Adaptado a medida",
-      "Notificaciones a través de WhatsApp",
-      "Registro de conversaciones",
-      "Responder y generar mensajes de voz",
-      "Flujos de conversación avanzados",
+      "Soluciones adaptadas a tu negocio",
+      "Notificaciones por WhatsApp",
+      "Análisis de conversaciones",
+      "Mensajes de voz",
+      "Métricas y reportes en PDF",
     ],
   },
 ];
 
 const additionals = [
   {
-    title: "Mejora tu presencia con Meta",
+    title: "Meta",
     description:
-      "Aprovechá la tecnología de Meta para mejorar tus conversaciones",
+      "Aprovechá la tecnología de Meta para mejorar tu presencia en WhatsApp",
     bgColor: "bg-[#0080FB]",
     icon: MetaSvgIcon,
   },
   {
-    title: "Mejorar tus conversaciones con IA",
+    title: "Inteligencia Artificial",
     description:
-      "Aprovechá la Inteligencia Artificial para generar flujos de conversación más efectivos y eficientes",
+      "Aprovechá la Inteligencia Artificial para generar flujos de conversación más efectivos",
     bgColor: "bg-[#ED254E]",
     icon: IAIcon,
   },
 ];
 ---
 
-<style>
-  .active-button {
-    background-color: #ffffff;
-    border: 2px solid #008000;
-    color: #008000;
-  }
-</style>
-
-<section id="pricing" class="w-full py-12 md:py-24 lg:py-32">
+<section id="pricing" class="w-full bg-secondary py-12 md:py-24 lg:py-32">
   <div class="container mx-auto px-4 md:px-6">
     <h2
-      class="mb-6 text-center text-3xl font-bold tracking-tighter md:text-5xl"
+      class="mb-6 text-center text-3xl font-bold tracking-tighter text-text md:text-5xl"
     >
       Inversión
     </h2>
     <h3
-      class="mb-12 text-center text-xl font-medium tracking-tighter sm:text-3xl"
+      class="mb-12 text-center text-xl font-medium tracking-tighter text-text sm:text-3xl"
     >
-      Elegí el plan que mejor se adapte a tus necesidades
+      Encontrá el plan perfecto para tu negocio
     </h3>
 
-    <div class="mb-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="mb-8 flex justify-center">
+      <div class="inline-flex rounded-lg bg-gray-100 p-1">
+        <button
+          class="rounded-md px-4 py-2 text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+          id="monthly">Mensual</button
+        >
+        <button
+          class="rounded-md px-4 py-2 text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+          id="annual">Anual</button
+        >
+      </div>
+    </div>
+
+    <div class="mb-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {
         plans.map((plan) => (
           <Card>
             <CardHeader>
               <CardTitle>{plan.title}</CardTitle>
+              <p class="text-sm text-gray-600">{plan.subtitle}</p>
             </CardHeader>
             <CardContent>
-              <div class="flex h-80 flex-col justify-between">
+              <div class="flex h-full flex-col justify-between">
                 <div>
-                  <div class="text-3xl font-bold">{plan.price}</div>
+                  <div class="text-3xl font-bold text-text">
+                    <span class="monthly-price">{plan.price}</span>
+                    <span class="annual-price hidden">{plan.anualPrice}</span>
+                    <span class="text-sm font-normal">
+                      /<span class="monthly-label">mes</span>
+                      <span class="annual-label hidden">año</span>
+                    </span>
+                  </div>
+                  <div class="annual-discount hidden text-sm font-medium text-primary">
+                    ¡1 mes gratis!
+                  </div>
                   <ul class="mt-4 space-y-2">
                     {plan.features.map((feature) => (
                       <PriceCardRow>
@@ -101,12 +134,6 @@ const additionals = [
                     ))}
                   </ul>
                 </div>
-                <button
-                  class="hover:bg-primary-dark mt-4 w-full rounded bg-primary px-4 py-2 text-sm text-white transition-colors"
-                  data-plan={plan.title}
-                >
-                  Quiero este plan
-                </button>
               </div>
             </CardContent>
           </Card>
@@ -115,16 +142,16 @@ const additionals = [
     </div>
 
     <h3
-      class="mb-12 text-center text-xl font-semibold tracking-tighter sm:text-3xl"
+      class="mb-12 text-center text-xl font-semibold tracking-tighter text-text sm:text-3xl"
     >
-      Consultá por nuestros adicionales
+      Mejorá tu experiencia con nuestros adicionales personalizados
     </h3>
 
     <div class="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
       {
         additionals.map((additional) => (
           <div
-            class={`flex items-center justify-between overflow-hidden rounded-lg ${additional.bgColor} p-6 text-white shadow-md`}
+            class={`flex items-center justify-between overflow-hidden rounded-lg ${additional.bgColor} p-6 text-secondary shadow-md`}
           >
             <div class="flex flex-col">
               <div class="text-lg font-semibold sm:text-2xl">
@@ -143,57 +170,31 @@ const additionals = [
 </section>
 
 <script>
-  document.querySelectorAll("button[data-plan]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const isActive = button.classList.contains("active-button");
+  const monthlyBtn = document.getElementById("monthly");
+  const annualBtn = document.getElementById("annual");
+  const monthlyPrices = document.querySelectorAll(".monthly-price");
+  const annualPrices = document.querySelectorAll(".annual-price");
+  const monthlyLabels = document.querySelectorAll(".monthly-label");
+  const annualLabels = document.querySelectorAll(".annual-label");
+  const annualDiscounts = document.querySelectorAll(".annual-discount");
 
-      // Remove active state from all buttons
-      document.querySelectorAll("button[data-plan]").forEach((btn) => {
-        btn.classList.remove("active-button");
-        btn.innerText = "Quiero este plan";
-      });
-
-      if (!isActive) {
-        // Add active state to the clicked button
-        button.classList.add("active-button");
-        button.innerText = "Plan seleccionado";
-
-        // Update hidden input and display selected plan
-        const selectedPlan = button.getAttribute("data-plan");
-
-        // Use localStorage to store the selected plan
-        localStorage.setItem("selectedPlan", selectedPlan);
-
-        // Dispatch a custom event to notify the contact form
-        window.dispatchEvent(
-          new CustomEvent("planSelected", { detail: selectedPlan })
-        );
-
-        // Scroll to the contact form
-        document.getElementById("contact").scrollIntoView({
-          behavior: "smooth",
-        });
-      } else {
-        // Clear the selected plan
-        localStorage.removeItem("selectedPlan");
-
-        // Dispatch a custom event to notify the contact form
-        window.dispatchEvent(new CustomEvent("planSelected", { detail: null }));
-      }
-    });
+  monthlyBtn.addEventListener("click", () => {
+    monthlyPrices.forEach((price) => price.classList.remove("hidden"));
+    annualPrices.forEach((price) => price.classList.add("hidden"));
+    monthlyLabels.forEach((label) => label.classList.remove("hidden"));
+    annualLabels.forEach((label) => label.classList.add("hidden"));
+    annualDiscounts.forEach((discount) => discount.classList.add("hidden"));
+    monthlyBtn.classList.add("bg-white", "shadow");
+    annualBtn.classList.remove("bg-white", "shadow");
   });
 
-  // Check for previously selected plan on page load
-  document.addEventListener("DOMContentLoaded", () => {
-    const selectedPlan = localStorage.getItem("selectedPlan");
-    if (selectedPlan) {
-      const button = document.querySelector(
-        `button[data-plan="${selectedPlan}"]`
-      );
-      if (button) {
-        button.classList.add("active-button");
-        button.innerText = "Plan seleccionado";
-      }
-    }
+  annualBtn.addEventListener("click", () => {
+    monthlyPrices.forEach((price) => price.classList.add("hidden"));
+    annualPrices.forEach((price) => price.classList.remove("hidden"));
+    monthlyLabels.forEach((label) => label.classList.add("hidden"));
+    annualLabels.forEach((label) => label.classList.remove("hidden"));
+    annualDiscounts.forEach((discount) => discount.classList.remove("hidden"));
+    annualBtn.classList.add("bg-white", "shadow");
+    monthlyBtn.classList.remove("bg-white", "shadow");
   });
 </script>

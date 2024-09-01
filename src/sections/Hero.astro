@@ -1,17 +1,21 @@
 ---
 import Button from "../components/Button.astro";
 import MetaLogo from "../images/Meta-Logo.png";
-// import PhoneScreen2 from "../images/webm/junbbweb.webm";
 import juanbbweb from "../images/webm/phone.webm";
 import { Image } from "astro:assets";
 
 const businessTypes = [
   "negocio",
-  "restaurante",
-  "tienda",
+  "salón de belleza",
   "consultorio",
-  "taller",
+  "cancha de fútbol",
   "gimnasio",
+  "tienda de ropa",
+  "peluquería",
+  "restaurante",
+  "clínica",
+  "hostel",
+  "pizzería",
 ];
 
 // Initial values
@@ -19,19 +23,20 @@ const initialBusinessName = businessTypes[0];
 ---
 
 <section
-  class="flex max-h-screen flex-col justify-center bg-secondary px-4 py-8 text-center tracking-tighter md:h-dvh md:py-24 md:text-left"
+  class="flex flex-col justify-center bg-secondary px-4 text-center tracking-tighter sm:max-h-screen md:h-dvh md:text-left"
+  aria-label="Hero Section"
 >
   <div
     class="container mx-auto h-full w-full md:grid md:grid-cols-12 md:items-stretch md:gap-4"
   >
     <div class="flex h-full flex-col justify-center p-4 sm:p-0 md:col-span-8">
       <h1
-        class="animate-fade-in text-4xl font-bold italic text-primary sm:text-6xl md:text-8xl"
+        class="animate-fade-in text-2xl font-bold italic text-primary sm:text-4xl md:text-6xl lg:text-8xl"
       >
         HERMES
       </h1>
       <p
-        class="animate-fade-in animate-delay-200 mt-4 text-xl sm:text-2xl md:text-4xl 2xl:text-5xl"
+        class="animate-fade-in animate-delay-200 mt-4 text-lg sm:text-xl md:text-2xl lg:text-4xl 2xl:text-5xl"
       >
         Tu <span
           id="businessType"
@@ -57,7 +62,7 @@ const initialBusinessName = businessTypes[0];
       <div
         class="md:text-md animate-fade-in animate-delay-800 mt-6 flex h-12 items-center justify-center gap-2 font-bold text-text md:justify-start"
       >
-        Funcionando gracias a <Image
+        Contamos con soporte para <Image
           src={MetaLogo}
           alt="Meta Logo"
           class="aspect-auto h-full w-min"
@@ -68,14 +73,14 @@ const initialBusinessName = businessTypes[0];
       <div
         class="animate-fade-in animate-delay-1000 mt-6 flex flex-col gap-2 md:flex-row md:gap-8"
       >
-        <a href="#pricing" class="">
+        <a href="#pricing" class="" aria-label="Quiero mi asistente">
           <Button variant="primary">
             <span class="text-sm tracking-wide lg:text-lg"
               >QUIERO MI ASISTENTE</span
             >
           </Button>
         </a>
-        <a href="#contact" class="">
+        <a href="#contact" class="" aria-label="Comunicarme con ventas">
           <Button class="whitespace-nowrap" variant="secondary">
             <span class="px-2 text-sm tracking-wide lg:text-lg"
               >COMUNICARME CON VENTAS</span
@@ -87,13 +92,6 @@ const initialBusinessName = businessTypes[0];
     <div
       class="animate-delay-1200 animate-fade-in mt-6 flex h-full items-end sm:p-0 md:col-span-4 md:mt-0"
     >
-      <!-- <Image
-        id="phoneScreen"
-        src={juanbbweb}
-        inferSize
-        alt="Phone screen example"
-        class="aspect-[9/20] h-full rounded-xl object-contain transition-opacity duration-500 ease-in-out"
-      /> -->
       <video
         id="phoneScreen"
         src={juanbbweb}
@@ -102,15 +100,23 @@ const initialBusinessName = businessTypes[0];
         loop
         muted
         playsinline
-        class="h-full rounded-xl object-contain"></video>
+        class="h-full rounded-xl object-contain"
+        aria-label="Phone screen example"></video>
     </div>
   </div>
 
   <style>
+    :root {
+      --fade-in-duration: 0.5s;
+      --fade-in-ease: ease-out;
+      --fade-in-opacity: 0;
+      --fade-in-transform: translateY(20px);
+    }
+
     @keyframes fadeIn {
       from {
-        opacity: 0;
-        transform: translateY(20px);
+        opacity: var(--fade-in-opacity);
+        transform: var(--fade-in-transform);
       }
       to {
         opacity: 1;
@@ -119,8 +125,8 @@ const initialBusinessName = businessTypes[0];
     }
 
     .animate-fade-in {
-      animation: fadeIn 0.5s ease-out forwards;
-      opacity: 0;
+      animation: fadeIn var(--fade-in-duration) var(--fade-in-ease) forwards;
+      opacity: var(--fade-in-opacity);
     }
 
     .animate-delay-200 {
@@ -151,14 +157,6 @@ const initialBusinessName = businessTypes[0];
       "consultorio",
       "taller",
       "gimnasio",
-    ];
-    const phoneScreens = [
-      "/src/images/phone2.png",
-      "/src/images/phone2.png",
-      "/src/images/phone2.png",
-      "/src/images/phone2.png",
-      "/src/images/phone2.png",
-      "/src/images/phone2.png",
     ];
 
     let currentIndex = 0;
