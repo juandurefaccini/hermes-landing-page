@@ -1,5 +1,5 @@
 ---
-
+const RECAPTCHA_SITE_KEY = "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR";
 ---
 
 <form id="contact-form" class="space-y-6" novalidate>
@@ -78,6 +78,12 @@
       <p class="text-sm text-red-600" id="message-error" aria-live="polite"></p>
     </div>
 
+    <script
+      is:inline
+      src=`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}&badge=bottomright`
+      async
+      defer></script>
+
     <div class="flex w-full pt-4 text-center">
       <button
         type="submit"
@@ -108,17 +114,26 @@
       e.preventDefault();
       showLoadingSpinner();
 
-      formMessage.classList.add("hidden");
-      loadingSpinner.classList.remove("hidden");
-
-      // Clear previous error messages
-      document.querySelectorAll('[id$="-error"]').forEach((el) => {
-        el.textContent = "";
-      });
-
-      const formData = new FormData(form);
-
       try {
+        const token = await grecaptcha.execute(
+          "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR",
+          {
+            action: "submit",
+          }
+        );
+
+        formMessage.classList.add("hidden");
+        loadingSpinner.classList.remove("hidden");
+
+        // Clear previous error messages
+        document.querySelectorAll('[id$="-error"]').forEach((el) => {
+          el.textContent = "";
+        });
+
+        const formData = new FormData(form);
+
+        formData.append("g-recaptcha-response", token);
+
         const response = await fetch("/api/contact", {
           method: "POST",
           body: formData,

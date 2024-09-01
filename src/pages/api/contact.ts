@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { sendContactEmail } from "../../utils/email";
+import { verifyRecaptcha } from "../../utils/recaptcha";
 
 export const POST: APIRoute = async ({ request }) => {
   const data = await request.formData();
@@ -7,6 +8,7 @@ export const POST: APIRoute = async ({ request }) => {
   const phoneNumber = data.get("phone-number");
   const email = data.get("email");
   const message = data.get("message");
+  const recaptchaToken = data.get("g-recaptcha-response");
 
   const errors: Record<string, string> = {};
   if (typeof firstName !== "string" || firstName.trim().length < 1) {
@@ -21,6 +23,12 @@ export const POST: APIRoute = async ({ request }) => {
   if (typeof message !== "string" || message.trim().length < 1) {
     errors.message = "Por favor, ingresa un mensaje.";
   }
+  if (
+    typeof recaptchaToken !== "string" ||
+    recaptchaToken.trim().length === 0
+  ) {
+    errors.recaptcha = "Error de validación reCAPTCHA.";
+  }
 
   if (Object.keys(errors).length > 0) {
     return new Response(JSON.stringify({ success: false, errors }), {
@@ -30,6 +38,21 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   try {
+    // Verify reCAPTCHA token
+    const recaptchaValid = await verifyRecaptcha(recaptchaToken as string);
+    if (!recaptchaValid) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "reCAPTCHA validation failed.",
+        }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
     await sendContactEmail(
       firstName as string,
       phoneNumber as string,
