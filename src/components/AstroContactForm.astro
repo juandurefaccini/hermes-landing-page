@@ -3,6 +3,7 @@
 ---
 
 <form id="contact-form" class="space-y-6">
+  <input type="hidden" id="selected-plan" name="selected-plan" />
   <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
     <div class="space-y-2">
       <label for="first-name" class="block text-sm font-medium text-gray-700">
@@ -21,7 +22,7 @@
     </div>
     <div class="space-y-2">
       <label for="phone-number" class="block text-sm font-medium text-gray-700">
-        Teléfono
+        Teléfono (opcional)
       </label>
       <input
         id="phone-number"
@@ -29,7 +30,6 @@
         type="text"
         autocomplete="tel"
         placeholder="Tu número de teléfono"
-        required
         class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-primary sm:text-sm"
       />
       <p class="text-sm text-red-600" id="phone-number-error"></p>
@@ -69,64 +69,138 @@
       <p class="text-sm text-red-600" id="message-error"></p>
     </div>
 
+    <div class="space-y-2">
+      <label class="block text-sm font-medium text-gray-700">
+        Plan Seleccionado
+      </label>
+      <p
+        id="selected-plan-display"
+        class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm sm:text-sm"
+      >
+        Ningún plan seleccionado
+      </p>
+    </div>
+
     <div class="flex w-full pt-4 text-center">
       <button
         type="submit"
-        class="grow rounded-3xl border bg-primary px-4 py-2 font-medium text-white"
+        class="grow rounded-lg border bg-primary px-4 py-2 font-medium text-white"
       >
         Enviar
       </button>
     </div>
   </div>
-</form>
 
-<div id="form-message" class="mt-4 hidden text-sm"></div>
+  <div id="form-message" class="mt-4 hidden text-sm"></div>
+  <div
+    id="loading-spinner"
+    class="mt-4 flex hidden items-center justify-center"
+  >
+    <div
+      class="loader h-12 w-12 rounded-full border-4 border-t-4 border-gray-200 ease-linear"
+    >
+    </div>
+  </div>
 
-<script>
-  const form = document.getElementById("contact-form") as HTMLFormElement;
-  const formMessage = document.getElementById("form-message") as HTMLDivElement;
+  <script>
+    const form = document.getElementById("contact-form");
+    const formMessage = document.getElementById("form-message");
+    const loadingSpinner = document.getElementById("loading-spinner");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    formMessage.classList.add("hidden");
+    function showLoadingSpinner() {
+      loadingSpinner.classList.remove("hidden");
+      // Trigger reflow to restart the animation
+      void loadingSpinner.offsetWidth;
+      loadingSpinner.classList.add("animate-spin");
+    }
 
-    // Clear previous error messages
-    document.querySelectorAll('[id$="-error"]').forEach((el) => {
-      (el as HTMLElement).textContent = "";
-    });
+    function hideLoadingSpinner() {
+      loadingSpinner.classList.add("hidden");
+      loadingSpinner.classList.remove("animate-spin");
+    }
 
-    const formData = new FormData(form);
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      showLoadingSpinner();
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        body: formData,
+      formMessage.classList.add("hidden");
+      loadingSpinner.classList.remove("hidden");
+
+      // Clear previous error messages
+      document.querySelectorAll('[id$="-error"]').forEach((el) => {
+        el.textContent = "";
       });
 
-      const result = await response.json();
+      const formData = new FormData(form);
 
-      if (result.success) {
-        window.location.href = "/success";
-      } else {
-        formMessage.textContent =
-          "Por favor, corrige los errores en el formulario.";
-        formMessage.classList.remove("hidden");
-        formMessage.classList.add("text-red-600");
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          body: formData,
+        });
 
-        // Display field-specific errors
-        for (const [field, error] of Object.entries(result.errors)) {
-          const errorElement = document.getElementById(`${field}-error`);
-          if (errorElement) {
-            errorElement.textContent = error as string;
+        const result = await response.json();
+
+        if (result.success) {
+          hideLoadingSpinner();
+
+          window.location.href = "/success";
+        } else {
+          formMessage.textContent =
+            "Por favor, corrige los errores en el formulario.";
+          formMessage.classList.remove("hidden");
+          formMessage.classList.add("text-red-600");
+
+          // Display field-specific errors
+          for (const [field, error] of Object.entries(result.errors)) {
+            const errorElement = document.getElementById(`${field}-error`);
+            if (errorElement) {
+              errorElement.textContent = error;
+            }
           }
         }
+      } catch (error) {
+        console.error("Error:", error);
+        formMessage.textContent =
+          "Error al enviar el mensaje. Por favor, inténtalo de nuevo.";
+        formMessage.classList.remove("hidden");
+        formMessage.classList.add("text-red-600");
+      } finally {
+        loadingSpinner.classList.add("hidden");
       }
-    } catch (error) {
-      console.error("Error:", error);
-      formMessage.textContent =
-        "Error al enviar el mensaje. Por favor, inténtalo de nuevo.";
-      formMessage.classList.remove("hidden");
-      formMessage.classList.add("text-red-600");
+    });
+
+    // Listen for the custom event to update the selected plan
+    window.addEventListener("planSelected", (event) => {
+      const selectedPlan = event.detail || "";
+      selectedPlanInput.value = selectedPlan;
+      selectedPlanDisplay.textContent =
+        selectedPlan || "Ningún plan seleccionado";
+    });
+
+    // Set the initial value of the hidden input and display based on localStorage
+    document.addEventListener("DOMContentLoaded", () => {
+      const selectedPlan = localStorage.getItem("selectedPlan");
+      if (selectedPlan) {
+        selectedPlanInput.value = selectedPlan;
+        selectedPlanDisplay.textContent = selectedPlan;
+      }
+    });
+  </script>
+
+  <style>
+    .loader {
+      border-top-color: #3ac265;
+      animation: spin 1s linear infinite;
     }
-  });
-</script>
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</form>
