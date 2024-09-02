@@ -14,9 +14,6 @@ export const POST: APIRoute = async ({ request }) => {
   if (typeof firstName !== "string" || firstName.trim().length < 1) {
     errors.firstName = "Por favor, ingresa tu nombre.";
   }
-  if (typeof phoneNumber !== "string" || phoneNumber.trim().length < 1) {
-    errors.phoneNumber = "Por favor, ingresa tu número de teléfono.";
-  }
   if (typeof email !== "string" || !email.includes("@")) {
     errors.email = "Correo electrónico no válido.";
   }
@@ -30,12 +27,16 @@ export const POST: APIRoute = async ({ request }) => {
     errors.recaptcha = "Error de validación reCAPTCHA.";
   }
 
+  console.log({ errors });
+
   if (Object.keys(errors).length > 0) {
     return new Response(JSON.stringify({ success: false, errors }), {
       status: 400,
       headers: { "Content-Type": "application/json" },
     });
   }
+
+  console.log({ firstName, phoneNumber, email, message, recaptchaToken });
 
   try {
     // Verify reCAPTCHA token
@@ -49,7 +50,7 @@ export const POST: APIRoute = async ({ request }) => {
         {
           status: 400,
           headers: { "Content-Type": "application/json" },
-        },
+        }
       );
     }
 
@@ -57,7 +58,7 @@ export const POST: APIRoute = async ({ request }) => {
       firstName as string,
       phoneNumber as string,
       email as string,
-      message as string,
+      message as string
     );
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
@@ -70,7 +71,7 @@ export const POST: APIRoute = async ({ request }) => {
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
-      },
+      }
     );
   }
 };
