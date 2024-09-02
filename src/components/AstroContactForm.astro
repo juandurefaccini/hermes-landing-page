@@ -193,6 +193,8 @@ const RECAPTCHA_SITE_KEY = "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR";
         formMessage.classList.remove("hidden");
         formMessage.classList.add("text-red-600");
 
+        console.log(Object.entries(errors));
+
         for (const [field, error] of Object.entries(errors)) {
           const errorElement = document.getElementById(`${field}-error`);
           if (errorElement) {

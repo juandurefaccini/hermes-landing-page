@@ -27,21 +27,19 @@ export const POST: APIRoute = async ({ request }) => {
     errors.recaptcha = "Error de validación reCAPTCHA.";
   }
 
-  console.log({ errors });
-
   if (Object.keys(errors).length > 0) {
+    console.error("Validation errors:", errors);
     return new Response(JSON.stringify({ success: false, errors }), {
       status: 400,
       headers: { "Content-Type": "application/json" },
     });
   }
 
-  console.log({ firstName, phoneNumber, email, message, recaptchaToken });
-
   try {
     // Verify reCAPTCHA token
     const recaptchaValid = await verifyRecaptcha(recaptchaToken as string);
     if (!recaptchaValid) {
+      console.error("reCAPTCHA validation failed.");
       return new Response(
         JSON.stringify({
           success: false,
