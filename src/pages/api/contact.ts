@@ -49,7 +49,7 @@ export const POST: APIRoute = async ({ request }) => {
         {
           status: 400,
           headers: { "Content-Type": "application/json" },
-        }
+        },
       );
     }
 
@@ -57,7 +57,7 @@ export const POST: APIRoute = async ({ request }) => {
       firstName as string,
       phoneNumber as string,
       email as string,
-      message as string
+      message as string,
     );
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
@@ -70,7 +70,7 @@ export const POST: APIRoute = async ({ request }) => {
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   }
 };

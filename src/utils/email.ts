@@ -12,7 +12,7 @@ export async function sendContactEmail(
   name: string,
   phone: string,
   email: string,
-  message: string
+  message: string,
 ): Promise<void> {
   const mailOptions = {
     from: process.env.EMAIL_USER,

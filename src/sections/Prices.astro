@@ -178,23 +178,27 @@ const additionals = [
   const annualLabels = document.querySelectorAll(".annual-label");
   const annualDiscounts = document.querySelectorAll(".annual-discount");
 
-  monthlyBtn.addEventListener("click", () => {
-    monthlyPrices.forEach((price) => price.classList.remove("hidden"));
-    annualPrices.forEach((price) => price.classList.add("hidden"));
-    monthlyLabels.forEach((label) => label.classList.remove("hidden"));
-    annualLabels.forEach((label) => label.classList.add("hidden"));
-    annualDiscounts.forEach((discount) => discount.classList.add("hidden"));
-    monthlyBtn.classList.add("bg-white", "shadow");
-    annualBtn.classList.remove("bg-white", "shadow");
-  });
+  if (monthlyBtn && annualBtn && monthlyPrices && annualPrices) {
+    monthlyBtn.addEventListener("click", () => {
+      monthlyPrices.forEach((price) => price.classList.remove("hidden"));
+      annualPrices.forEach((price) => price.classList.add("hidden"));
+      monthlyLabels.forEach((label) => label.classList.remove("hidden"));
+      annualLabels.forEach((label) => label.classList.add("hidden"));
+      annualDiscounts.forEach((discount) => discount.classList.add("hidden"));
+      monthlyBtn.classList.add("bg-white", "shadow");
+      annualBtn.classList.remove("bg-white", "shadow");
+    });
 
-  annualBtn.addEventListener("click", () => {
-    monthlyPrices.forEach((price) => price.classList.add("hidden"));
-    annualPrices.forEach((price) => price.classList.remove("hidden"));
-    monthlyLabels.forEach((label) => label.classList.add("hidden"));
-    annualLabels.forEach((label) => label.classList.remove("hidden"));
-    annualDiscounts.forEach((discount) => discount.classList.remove("hidden"));
-    annualBtn.classList.add("bg-white", "shadow");
-    monthlyBtn.classList.remove("bg-white", "shadow");
-  });
+    annualBtn.addEventListener("click", () => {
+      monthlyPrices.forEach((price) => price.classList.add("hidden"));
+      annualPrices.forEach((price) => price.classList.remove("hidden"));
+      monthlyLabels.forEach((label) => label.classList.add("hidden"));
+      annualLabels.forEach((label) => label.classList.remove("hidden"));
+      annualDiscounts.forEach((discount) =>
+        discount.classList.remove("hidden")
+      );
+      annualBtn.classList.add("bg-white", "shadow");
+      monthlyBtn.classList.remove("bg-white", "shadow");
+    });
+  }
 </script>

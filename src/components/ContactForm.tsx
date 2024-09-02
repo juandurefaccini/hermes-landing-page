@@ -12,7 +12,7 @@ export default function ContactForm() {
     text: string;
   } | null>(null);
   const [lastSubmissionTime, setLastSubmissionTime] = useState<number | null>(
-    null
+    null,
   );
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {

@@ -6,7 +6,7 @@ export async function verifyRecaptcha(token: string): Promise<boolean> {
       `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET_KEY}&response=${token}`,
       {
         method: "POST",
-      }
+      },
     );
 
     const data = await response.json();

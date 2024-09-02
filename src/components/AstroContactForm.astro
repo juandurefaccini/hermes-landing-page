@@ -106,75 +106,101 @@ const RECAPTCHA_SITE_KEY = "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR";
   </div>
 
   <script>
-    const form = document.getElementById("contact-form");
-    const formMessage = document.getElementById("form-message");
-    const loadingSpinner = document.getElementById("loading-spinner");
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("contact-form");
+      const formMessage = document.getElementById("form-message");
+      const loadingSpinner = document.getElementById("loading-spinner");
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      showLoadingSpinner();
+      if (!form || !formMessage || !loadingSpinner) {
+        console.error("Form elements not found.");
+        return;
+      }
 
-      try {
-        const token = await grecaptcha.execute(
-          "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR",
-          {
-            action: "submit",
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        showLoadingSpinner();
+
+        try {
+          const token = await grecaptcha.execute(
+            "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR",
+            { action: "submit" }
+          );
+
+          clearErrorMessages();
+          const formData = new FormData(form as HTMLFormElement);
+          formData.append("g-recaptcha-response", token);
+
+          const response = await fetch("/api/contact", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
           }
-        );
 
-        formMessage.classList.add("hidden");
+          const result = await response.json();
+
+          if (result.success) {
+            window.location.href = "/success";
+          } else {
+            displayFormErrors(result.errors);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          displayErrorMessage(
+            "Error al enviar el mensaje. Por favor, inténtalo de nuevo."
+          );
+        } finally {
+          hideLoadingSpinner();
+        }
+      });
+
+      function showLoadingSpinner() {
+        if (!loadingSpinner) {
+          return;
+        }
         loadingSpinner.classList.remove("hidden");
+      }
 
-        // Clear previous error messages
+      function hideLoadingSpinner() {
+        if (!loadingSpinner) {
+          return;
+        }
+        loadingSpinner.classList.add("hidden");
+      }
+
+      function clearErrorMessages() {
         document.querySelectorAll('[id$="-error"]').forEach((el) => {
           el.textContent = "";
         });
+      }
 
-        const formData = new FormData(form);
-
-        formData.append("g-recaptcha-response", token);
-
-        const response = await fetch("/api/contact", {
-          method: "POST",
-          body: formData,
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-          hideLoadingSpinner();
-          window.location.href = "/success";
-        } else {
-          formMessage.textContent =
-            "Por favor, corrige los errores en el formulario.";
-          formMessage.classList.remove("hidden");
-          formMessage.classList.add("text-red-600");
-
-          // Display field-specific errors
-          for (const [field, error] of Object.entries(result.errors)) {
-            const errorElement = document.getElementById(`${field}-error`);
-            if (errorElement) {
-              errorElement.textContent = error;
-            }
-          }
+      function displayFormErrors(errors: Record<string, string>) {
+        if (!formMessage) {
+          return;
         }
-      } catch (error) {
-        console.error("Error:", error);
         formMessage.textContent =
-          "Error al enviar el mensaje. Por favor, inténtalo de nuevo.";
+          "Por favor, corrige los errores en el formulario.";
         formMessage.classList.remove("hidden");
         formMessage.classList.add("text-red-600");
-      } finally {
-        hideLoadingSpinner();
+
+        for (const [field, error] of Object.entries(errors)) {
+          const errorElement = document.getElementById(`${field}-error`);
+          if (errorElement) {
+            errorElement.textContent = error as string;
+          }
+        }
+      }
+
+      function displayErrorMessage(message: string) {
+        if (!formMessage) {
+          return;
+        }
+        formMessage.textContent = message;
+        formMessage.classList.remove("hidden");
+        formMessage.classList.add("text-red-600");
       }
     });
-
-    function showLoadingSpinner() {
-      loadingSpinner.classList.remove("hidden");
-    }
-
-    function hideLoadingSpinner() {
-      loadingSpinner.classList.add("hidden");
-    }
   </script>
 </form>
