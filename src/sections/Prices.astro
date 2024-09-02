@@ -170,26 +170,26 @@ const additionals = [
 </section>
 
 <script>
-  const monthlyBtn = document.getElementById("monthly");
-  const annualBtn = document.getElementById("annual");
-  const monthlyPrices = document.querySelectorAll(".monthly-price");
-  const annualPrices = document.querySelectorAll(".annual-price");
-  const monthlyLabels = document.querySelectorAll(".monthly-label");
-  const annualLabels = document.querySelectorAll(".annual-label");
-  const annualDiscounts = document.querySelectorAll(".annual-discount");
+  document.addEventListener("DOMContentLoaded", function () {
+    const monthlyBtn = document.getElementById("monthly");
+    const annualBtn = document.getElementById("annual");
+    const monthlyPrices = document.querySelectorAll(".monthly-price");
+    const annualPrices = document.querySelectorAll(".annual-price");
+    const monthlyLabels = document.querySelectorAll(".monthly-label");
+    const annualLabels = document.querySelectorAll(".annual-label");
+    const annualDiscounts = document.querySelectorAll(".annual-discount");
 
-  if (monthlyBtn && annualBtn && monthlyPrices && annualPrices) {
-    monthlyBtn.addEventListener("click", () => {
+    function setMonthly() {
       monthlyPrices.forEach((price) => price.classList.remove("hidden"));
       annualPrices.forEach((price) => price.classList.add("hidden"));
       monthlyLabels.forEach((label) => label.classList.remove("hidden"));
       annualLabels.forEach((label) => label.classList.add("hidden"));
       annualDiscounts.forEach((discount) => discount.classList.add("hidden"));
-      monthlyBtn.classList.add("bg-white", "shadow");
-      annualBtn.classList.remove("bg-white", "shadow");
-    });
+      monthlyBtn?.classList.add("bg-white", "shadow");
+      annualBtn?.classList.remove("bg-white", "shadow");
+    }
 
-    annualBtn.addEventListener("click", () => {
+    function setAnnual() {
       monthlyPrices.forEach((price) => price.classList.add("hidden"));
       annualPrices.forEach((price) => price.classList.remove("hidden"));
       monthlyLabels.forEach((label) => label.classList.add("hidden"));
@@ -197,8 +197,16 @@ const additionals = [
       annualDiscounts.forEach((discount) =>
         discount.classList.remove("hidden")
       );
-      annualBtn.classList.add("bg-white", "shadow");
-      monthlyBtn.classList.remove("bg-white", "shadow");
-    });
-  }
+      annualBtn?.classList.add("bg-white", "shadow");
+      monthlyBtn?.classList.remove("bg-white", "shadow");
+    }
+
+    if (monthlyBtn && annualBtn) {
+      // Set monthly as default
+      setMonthly();
+
+      monthlyBtn.addEventListener("click", setMonthly);
+      annualBtn.addEventListener("click", setAnnual);
+    }
+  });
 </script>
