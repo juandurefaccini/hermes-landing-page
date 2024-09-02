@@ -92,6 +92,10 @@ const RECAPTCHA_SITE_KEY = "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR";
         Enviar
       </button>
     </div>
+    <a href="/success" class="hidden" id="go-to-sucess-page-btn">
+      No deberías ver esto. Pero este es un elemento html que se usa para
+      redirigir al usuario a una página de éxito.
+    </a>
   </div>
 
   <div id="form-message" class="mt-4 hidden text-sm" aria-live="polite"></div>
@@ -110,6 +114,10 @@ const RECAPTCHA_SITE_KEY = "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR";
       const form = document.getElementById("contact-form");
       const formMessage = document.getElementById("form-message");
       const loadingSpinner = document.getElementById("loading-spinner");
+
+      const goToSuccessPageBtn = document.getElementById(
+        "go-to-sucess-page-btn"
+      );
 
       if (!form || !formMessage || !loadingSpinner) {
         console.error("Form elements not found.");
@@ -142,7 +150,11 @@ const RECAPTCHA_SITE_KEY = "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR";
           const result = await response.json();
 
           if (result.success) {
-            window.location.href = "/success";
+            if (!goToSuccessPageBtn) {
+              window.location.href = "/success";
+            } else {
+              goToSuccessPageBtn.click();
+            }
           } else {
             displayFormErrors(result.errors);
           }
@@ -204,3 +216,20 @@ const RECAPTCHA_SITE_KEY = "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR";
     });
   </script>
 </form>
+
+<style>
+  .loader {
+    border-top-color: #3ac265;
+    border-bottom-color: #3ac265;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
