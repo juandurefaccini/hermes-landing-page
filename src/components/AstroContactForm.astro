@@ -129,6 +129,7 @@ const RECAPTCHA_SITE_KEY = "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR";
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
         showLoadingSpinner();
+        clearErrorMessages();
 
         try {
           const token = await grecaptcha.execute(
@@ -136,7 +137,10 @@ const RECAPTCHA_SITE_KEY = "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR";
             { action: "submit" }
           );
 
-          clearErrorMessages();
+          if (!token) {
+            throw new Error("Error al obtener el token de reCAPTCHA.");
+          }
+
           const formData = new FormData(form as HTMLFormElement);
           formData.append("g-recaptcha-response", token);
 
