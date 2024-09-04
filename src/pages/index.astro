@@ -7,11 +7,12 @@ import Contact from "../sections/Contact.astro";
 import Prices from "../sections/Prices.astro";
 import Button from "../components/Button.astro";
 import Banner from "../components/Banner.astro";
+import WhoWeAre from "../sections/WhoWeAre.astro";
+import OurProduct from "../sections/OurProduct.astro";
 ---
 
 <Layout title="Hermes">
   <main>
-    <!-- <NavBar /> -->
     <div class="relative min-h-dvh w-full bg-white">
       <div
         class="absolute h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"
@@ -20,7 +21,8 @@ import Banner from "../components/Banner.astro";
       <Hero />
     </div>
 
-    <!-- Line -->
+    <WhoWeAre />
+    <OurProduct />
 
     <Banner>
       <h1
@@ -33,19 +35,23 @@ import Banner from "../components/Banner.astro";
     </Banner>
 
     <Advantages />
-    <!-- <AddToMyBusiness /> -->
-    <!-- <WorksForMyBusiness /> -->
     <Banner>
       <h1
-        class="text-4xl font-medium uppercase italic tracking-tighter md:text-6xl"
+        class="text-3xl font-medium uppercase italic tracking-tighter md:text-6xl"
       >
         ¿Qué esperás para agilizar tu negocio?
       </h1>
-      <div>
+      <div class="">
         <a href="#contact">
-          <Button variant="secondary">
+          <button
+            type="button"
+            class:list={[
+              `grow px-4 py-2 rounded-3xl `,
+              "bg-background border-2",
+            ]}
+          >
             <span>¡Contactate con nosotros!</span>
-          </Button>
+          </button>
         </a>
       </div>
     </Banner>

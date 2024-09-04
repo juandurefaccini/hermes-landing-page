@@ -1,0 +1,68 @@
+---
+import Card from "../components/prices/Card.astro";
+import CardContent from "../components/prices/CardContent.astro";
+import CardHeader from "../components/prices/CardHeader.astro";
+import CardTitle from "../components/prices/CardTitle.astro";
+
+import ScissorIcon from "../components/icons/ScissorIcon.astro";
+import ShopIcon from "../components/icons/ShopIcon.astro";
+import BuildingIcon from "../components/icons/BuildingIcon.astro";
+
+const cards = [
+  {
+    title: "Para tu peluqueria",
+    subtitle: "Agendá turnos y respondé dudas",
+    content:
+      "Nuestros chatbot pueden encargarse de la comunicación con tus clientes, agendando turnos y respondiendo dudas para que no estés pendiente del teléfono.",
+    icon: ScissorIcon,
+  },
+  {
+    title: "Para tu tienda",
+    subtitle: "Recibí pagos y agilizá tus ventas",
+    content:
+      "Con nuestros chatbots vas a poder recibir pagos de tus clientes a través de Whatsapp, agilizando tus ventas.",
+    icon: ShopIcon,
+  },
+  {
+    title: "Para tu organización",
+    subtitle: "Automatizá tus flujos",
+    content:
+      "Nuestros chatbots se pueden integrar con tus flujos permitiendo operaciones a través del chat. Genera reportes, facturas y más.",
+    icon: BuildingIcon,
+  },
+];
+---
+
+<section class="py-12 md:py-24">
+  <div class="container mx-auto px-4 sm:px-0">
+    <h2 class="mb-6 text-center text-3xl font-bold md:text-5xl">
+      Nuestro Producto
+    </h2>
+    <p class="mb-12 text-center text-lg md:text-xl">
+      Generamos asistentes personalizados que, a través de Whatsapp, te permiten
+      manejar tu negocio de manera más eficiente.
+    </p>
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+      {
+        cards.map((card) => (
+          <Card class="rounded-xl border bg-primary p-6 text-center">
+            <CardHeader>
+              <div class="flex h-full justify-between">
+                <div class="h-full">
+                  <CardTitle>{card.title}</CardTitle>
+                  <p class="text-sm text-gray-600">{card.subtitle}</p>
+                </div>
+                <div class="flex h-full items-center">
+                  <card.icon class="mx-auto mb-4 h-12 w-12" />
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p class="md:text-md text-lg">{card.content}</p>
+            </CardContent>
+          </Card>
+        ))
+      }
+    </div>
+  </div>
+</section>
