@@ -130,6 +130,7 @@ const RECAPTCHA_SITE_KEY = "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR";
         e.preventDefault();
         showLoadingSpinner();
         clearErrorMessages();
+        hideErrorMessage();
 
         try {
           const token = await grecaptcha.execute(
@@ -143,8 +144,6 @@ const RECAPTCHA_SITE_KEY = "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR";
 
           const formData = new FormData(form as HTMLFormElement);
           formData.append("g-recaptcha-response", token);
-
-          console.log({ formData });
 
           const response = await fetch("/api/contact", {
             method: "POST",
@@ -220,6 +219,14 @@ const RECAPTCHA_SITE_KEY = "6LfKhDMqAAAAAOsa-sQGO4P6uKWxkV9OtYxdbLBR";
         formMessage.textContent = message;
         formMessage.classList.remove("hidden");
         formMessage.classList.add("text-red-600");
+      }
+
+      function hideErrorMessage() {
+        if (!formMessage) {
+          return;
+        }
+        formMessage.textContent = "";
+        formMessage.classList.add("hidden");
       }
     });
   </script>
