@@ -1,25 +1,28 @@
 ---
+import SectionHeader from "@components/SectionHeader.astro";
 import AstroContactForm from "../components/AstroContactForm.astro";
 ---
 
 <section id="contact" class="w-full">
-  <div class="container mx-auto border-t px-4 py-12 md:px-6 md:py-24 lg:py-32">
-    <h2
-      class="mb-12 text-center text-3xl font-bold tracking-tighter sm:text-5xl"
+  <div class="container mx-auto px-4 py-12 md:px-6 md:py-24 lg:py-32">
+    <SectionHeader title="Contacto" subtitle="Contactate con nuestro equipo" />
+    <p
+      class="mx-auto mb-12 max-w-3xl text-center text-lg text-gray-600 md:text-xl"
     >
-      Contacto
-    </h2>
+      Descubrí cómo automatizar tus turnos con nuestro chatbot por WhatsApp.
+    </p>
     <div class="mx-auto max-w-2xl">
       <a
         href="https://api.whatsapp.com/send?phone=5492236853&text=Hola%2C%20quisiera%20saber%20mas%20de%20su%20servicio"
         target="_blank"
         rel="noreferrer noopener"
+        class="block w-full"
       >
         <div
-          class="mb-4 flex items-center justify-center gap-4 rounded-lg bg-primary p-4 font-bold text-secondary"
+          class="mb-4 text-sm flex  sm:flex-row items-center justify-center  sm:gap-4 rounded-3xl bg-primary p-2 sm:p-4 font-bold text-secondary"
         >
-          ¡Contactanos por WhatsApp haciendo click acá!
-          <div class="flex h-8 w-8 items-center justify-center">
+          <span class="text-center sm:text-left">¡Contactanos por WhatsApp haciendo click acá!</span>
+          <div class="sm:flex h-8 items-center justify-center hidden">
             <div class="relative z-20">
               <svg
                 fill="#fff"
@@ -44,10 +47,6 @@ import AstroContactForm from "../components/AstroContactForm.astro";
           </div>
         </div>
       </a>
-
-      <!-- <div class="rounded-lg bg-white p-4 shadow-lg sm:p-8">
-        <AstroContactForm />
-      </div> -->
     </div>
   </div>
 </section>

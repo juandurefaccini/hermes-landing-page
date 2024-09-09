@@ -4,8 +4,8 @@ import CardHeader from "../components/prices/CardHeader.astro";
 import CardTitle from "../components/prices/CardTitle.astro";
 import CardContent from "../components/prices/CardContent.astro";
 import PriceCardRow from "../components/prices/PriceCardRow.astro";
-import MetaSvgIcon from "../components/icons/MetaSvgIcon.astro";
-import IAIcon from "../components/icons/IAIcon.astro";
+import MetaSvgIcon from "@icons/MetaSvgIcon.astro";
+import IAIcon from "@icons/IAIcon.astro";
 
 const plans = [
   {
@@ -80,16 +80,17 @@ const additionals = [
 
 <section id="pricing" class="w-full bg-secondary py-12 md:py-24 lg:py-32">
   <div class="container mx-auto px-4 md:px-6">
-    <h2
-      class="mb-6 text-center text-3xl font-bold tracking-tighter text-text md:text-5xl"
-    >
-      Inversión
-    </h2>
-    <h3
-      class="mb-12 text-center text-xl font-medium tracking-tighter text-text sm:text-3xl"
-    >
-      Encontrá el plan perfecto para tu negocio
+  <header class="my-6 text-center">
+  <h2 class="text-3xl font-bold md:text-5xl">
+Inversión    </h2>
+    <h3 class="mt-2 text-xl font-semibold md:text-2xl">
+    Encontrá el plan perfecto para tu negocio
     </h3>
+  </header>
+
+  <p class="text-center text-lg font-medium text-primary mb-8">
+    ¡El primer mes es gratis en todos nuestros planes!
+  </p>
 
     <div class="mb-8 flex justify-center">
       <div class="inline-flex rounded-lg bg-gray-100 p-1">
@@ -124,7 +125,7 @@ const additionals = [
                     </span>
                   </div>
                   <div class="annual-discount hidden text-sm font-medium text-primary">
-                    ¡1 mes gratis!
+                    ¡1 mes más de regalo!
                   </div>
                   <ul class="mt-4 space-y-2">
                     {plan.features.map((feature) => (
@@ -141,7 +142,7 @@ const additionals = [
       }
     </div>
 
-    <h3
+    <!-- <h3
       class="mb-12 text-center text-xl font-semibold tracking-tighter text-text sm:text-3xl"
     >
       Mejorá tu experiencia con nuestros adicionales personalizados
@@ -165,7 +166,7 @@ const additionals = [
           </div>
         ))
       }
-    </div>
+    </div> -->
   </div>
 </section>
 

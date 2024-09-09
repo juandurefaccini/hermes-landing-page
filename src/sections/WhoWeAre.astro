@@ -1,34 +1,59 @@
 ---
+import { Icon } from "astro-icon/components";
 
+const features = [
+  {
+    icon: "mdi:robot",
+    title: "Optimiza tu servicio",
+    description:
+      'Los chatbots reducen hasta un <span class="text-2xl font-bold text-primary">30%</span> los costes de atención al cliente, mejorando la eficiencia operativa.',
+  },
+  {
+    icon: "mdi:message-text",
+    title: "Conecta donde importa",
+    description:
+      'El <span class="text-2xl font-bold text-primary">65%</span> de los consumidores prefiere contactar con las empresas a través de aplicaciones de mensajería. Estamos donde tus clientes están.',
+  },
+  {
+    icon: "mdi:clock-fast",
+    title: "Responde rápido",
+    description:
+      'El <span class="text-2xl font-bold text-primary">53%</span> de los consumidores considera frustrante esperar demasiado por respuestas. Con Hermes, tus clientes obtienen respuestas inmediatas.',
+  },
+];
 ---
 
-<section class="py-12 md:py-24">
+<section class="bg-green-50 py-12 md:py-24">
   <div class="container mx-auto">
     <div class="gap-4 px-4 sm:gap-8 sm:px-0">
-      <header class="my-6">
-        <h2 class="text-left text-3xl font-bold md:text-5xl">Somos Hermes</h2>
+      <header class="my-6 text-center">
+        <h2 class="text-3xl font-bold md:text-5xl">
+          Somos <span class="font-bold italic text-primary">Hermes</span>
+        </h2>
+        <h3 class="mt-2 text-xl font-semibold md:text-2xl">
+          Tu aliado en la Comunicación Digital
+        </h3>
       </header>
-      <p class="mb-12 text-left text-lg md:text-xl">
-        Nuestro objetivo es agilizar todas tus operaciones a través de WhatsApp.
-        Ofrecemos asistentes personalizados para emprendimientos y para pequeñas
-        y medianas empresas.
+      <p
+        class="mx-auto mb-12 max-w-3xl text-center text-lg text-gray-600 md:text-xl"
+      >
+        Nuestra misión es revolucionar tus operaciones empresariales a través de
+        WhatsApp. Diseñamos asistentes virtuales inteligentes y personalizados
+        para emprendimientos, pequeñas y medianas empresas, potenciando tu
+        eficiencia y alcance.
       </p>
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-        <div class="mb-4">
-          <p class="text-lg md:text-xl">
-            Los chatbots ahorran a las empresas
-            <span class="text-2xl font-bold text-primary md:text-3xl">30%</span>
-            en costes de atención al cliente.
-          </p>
-        </div>
-        <div>
-          <p class="text-lg md:text-xl">
-            El
-            <span class="text-2xl font-bold text-primary md:text-3xl">65%</span>
-            de los consumidores utiliza las aplicaciones de mensajería para contactarse
-            con el equipo de atención al cliente.
-          </p>
-        </div>
+      <div class="grid gap-8 md:grid-cols-3">
+        {
+          features.map((feature) => (
+            <div class="rounded-lg bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+              <div class="mb-4 flex items-center">
+                <Icon name={feature.icon} class="mr-4 h-12 w-12 text-primary" />
+                <h4 class="text-xl font-semibold">{feature.title}</h4>
+              </div>
+              <p class="text-lg" set:html={feature.description} />
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>

@@ -1,0 +1,124 @@
+---
+import SectionHeader from "@components/SectionHeader.astro";
+
+const faqs = [
+  {
+    question: "¿Cómo puedo contactar con soporte?",
+    answer:
+      "Puedes contactar con nuestro equipo de soporte a través de nuestro formulario de contacto o enviando un correo a soporte@hermes.com.",
+  },
+  {
+    question: "¿Puedo cancelar mi suscripción en cualquier momento?",
+    answer:
+      "Sí, puedes cancelar tu suscripción en cualquier momento desde tu cuenta o contactando con nuestro equipo de soporte.",
+  },
+  {
+    question: "¿Ofrecen algún periodo de prueba?",
+    answer:
+      "Sí, ofrecemos un periodo de prueba gratuito de 30 días para que puedas probar nuestro servicio sin compromiso.",
+  },
+  {
+    question: "¿Puedo cambiar mi plan de suscripción?",
+    answer: "Sí, podés cambiar tu suscripción cuando quieras.",
+  },
+];
+---
+
+<section id="faq" class="w-full bg-[#f0fdf4] py-12">
+  <div class="container mx-auto px-4 py-8 md:px-6 lg:px-8">
+    <SectionHeader
+      title="Preguntas Frecuentes"
+      subtitle="Respuestas a las dudas más comunes"
+    />
+    <div class="mx-auto max-w-4xl">
+      {
+        faqs.map((faq, index) => (
+          <div
+            class="animate-slide-in mb-4 border-b border-gray-200 pb-4"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <button
+              class="flex w-full items-center justify-between rounded-lg p-4 text-left text-xl font-semibold transition-all duration-200 focus:outline-none"
+              onclick={`toggleAnswer(${index})`}
+            >
+              {faq.question}
+              <svg
+                class="h-6 w-6 transform transition-transform duration-200"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <div
+              id={`answer-${index}`}
+              class="animate-fade-in mt-2 hidden rounded-lg p-4 text-gray-700"
+            >
+              {faq.answer}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.5s ease-out;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    const faqButtons = document.querySelectorAll("#faq button");
+    faqButtons.forEach((button, index) => {
+      button.addEventListener("click", () => toggleAnswer(index));
+    });
+  });
+
+  function toggleAnswer(index) {
+    const answer = document.getElementById(`answer-${index}`);
+    const button = answer.previousElementSibling;
+    const icon = button.querySelector("svg");
+
+    answer.classList.toggle("hidden");
+    icon.classList.toggle("rotate-180");
+
+    if (!answer.classList.contains("hidden")) {
+      answer.style.animation = "none";
+      answer.offsetHeight; // Trigger reflow
+      answer.style.animation = null;
+    }
+  }
+</script>

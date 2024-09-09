@@ -1,17 +1,19 @@
 ---
-import HermesIcon from "../components/icons/HermesIcon.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <!-- <div class="fixed bottom-8 right-8 hidden md:block"> -->
 <div class="fixed bottom-8 left-1/2 hidden -translate-x-1/2 transform md:block">
-  <a href="#contact">
+  <a
+    href="https://api.whatsapp.com/send?phone=5492236853&text=Hola%2C%20quisiera%20saber%20mas%20de%20su%20servicio"
+  >
     <div
       class="group flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-text p-2 transition-all duration-300 ease-in-out hover:w-64 hover:border hover:bg-primary"
     >
       <div
-        class="absolute text-primary transition-opacity duration-300 group-hover:opacity-0"
+        class="absolute text-secondary transition-opacity duration-300 group-hover:opacity-0"
       >
-        <HermesIcon />
+        <Icon name="Hermes" />
       </div>
 
       <h1

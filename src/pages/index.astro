@@ -8,6 +8,8 @@ import Prices from "../sections/Prices.astro";
 import Banner from "../components/Banner.astro";
 import WhoWeAre from "../sections/WhoWeAre.astro";
 import OurProduct from "../sections/OurProduct.astro";
+import Usage from "src/sections/Usage.astro";
+import FAQ from "src/sections/FAQ.astro";
 ---
 
 <Layout title="Hermes">
@@ -22,8 +24,9 @@ import OurProduct from "../sections/OurProduct.astro";
 
     <WhoWeAre />
     <OurProduct />
+    <!-- <Usage /> -->
 
-    <Banner>
+    <!-- <Banner>
       <h1
         class="text-3xl font-medium uppercase italic tracking-tighter md:text-6xl"
       >
@@ -31,7 +34,7 @@ import OurProduct from "../sections/OurProduct.astro";
           >HERMES</span
         >
       </h1>
-    </Banner>
+    </Banner> -->
 
     <Advantages />
     <Banner>
@@ -41,7 +44,9 @@ import OurProduct from "../sections/OurProduct.astro";
         ¿Qué esperás para agilizar tu negocio?
       </h1>
       <div class="">
-        <a href="#contact">
+        <a
+          href="https://api.whatsapp.com/send?phone=5492236853&text=Hola%2C%20quisiera%20saber%20mas%20de%20su%20servicio"
+        >
           <button
             type="button"
             class:list={[
@@ -56,6 +61,7 @@ import OurProduct from "../sections/OurProduct.astro";
     </Banner>
 
     <Prices />
+    <FAQ />
     <Contact />
     <StickyCTA />
   </main>

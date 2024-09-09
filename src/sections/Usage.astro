@@ -1,0 +1,116 @@
+---
+import Button from "@components/Button.astro";
+
+const examples = [
+  {
+    id: "peluqueria",
+    title: "Peluquería",
+    steps: [
+      {
+        title: "Consulta",
+        description:
+          "El cliente pregunta al asistente virtual qué horarios hay disponibles para un corte de pelo.",
+      },
+      {
+        title: "Reserva",
+        description:
+          "El cliente decide reservar un horario en particular a través del asistente virtual.",
+      },
+      {
+        title: "Confirmación",
+        description:
+          "El asistente confirma la reserva con el usuario, proporcionando los detalles de la cita.",
+      },
+    ],
+  },
+  {
+    id: "tienda",
+    title: "E-Commerce (No disponible)",
+    steps: [],
+  },
+];
+---
+
+<section id="usage" class="w-full bg-gray-100 py-12">
+  <div class="container mx-auto px-4 md:px-6 lg:px-8">
+    <h2
+      class="mb-8 text-center text-3xl font-bold tracking-tighter sm:text-5xl"
+    >
+      ¿Cómo los clientes usarán nuestro asistente?
+    </h2>
+    <p class="mb-12 text-center text-lg text-gray-700">
+      Te mostramos un ejemplo de cómo una peluquería podría usar nuestro
+      asistente virtual. Por el momento, los ejemplos de restaurante, gimnasio y
+      taller mecánico no están disponibles.
+    </p>
+    <div class="mb-8 flex justify-center space-x-4">
+      {
+        examples.map((example) => (
+          <button
+            class={`example-button p-2 rounded hover:bg-gray-200 transition-colors duration-200 ${
+              example.steps.length > 0
+                ? "text-green-500"
+                : "text-gray-400 cursor-not-allowed"
+            }`}
+            data-id={example.id}
+            disabled={example.steps.length === 0}
+          >
+            {example.title}
+          </button>
+        ))
+      }
+    </div>
+    {
+      examples.map((example, index) => (
+        <div id={`example-${example.id}`} class="example-content">
+          <div class="grid gap-8 md:grid-cols-3">
+            {example.steps.map((step, stepIndex) => (
+              <div class="flex flex-col items-center">
+                <div class="mb-4 w-full bg-gray-300">
+                  <img
+                    src={`https://via.placeholder.com/300x400`}
+                    alt={`${example.title} Paso ${stepIndex + 1}`}
+                    class="h-full w-full object-cover"
+                  />
+                </div>
+                <h3 class="mb-2 text-center text-xl font-bold">
+                  <span class="block">Paso {stepIndex + 1}</span>
+                  <span class="block">{step.title}</span>
+                </h3>
+                <p class="text-center text-gray-600">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    const buttons = document.querySelectorAll(".example-button");
+    const examples = document.querySelectorAll(".example-content");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (button.disabled) return;
+        const selectedId = button.getAttribute("data-id");
+        examples.forEach((example) => {
+          example.classList.add("hidden");
+        });
+        document
+          .getElementById(`example-${selectedId}`)
+          .classList.remove("hidden");
+
+        buttons.forEach((btn) => {
+          btn.classList.remove("text-green-500");
+        });
+        button.classList.add("text-green-500");
+      });
+    });
+
+    // Initialize the first button as selected
+    buttons[0].classList.add("text-green-500");
+  });
+</script>

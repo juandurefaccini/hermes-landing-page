@@ -4,45 +4,64 @@ import CardContent from "../components/prices/CardContent.astro";
 import CardHeader from "../components/prices/CardHeader.astro";
 import CardTitle from "../components/prices/CardTitle.astro";
 
-import ScissorIcon from "../components/icons/ScissorIcon.astro";
-import ShopIcon from "../components/icons/ShopIcon.astro";
-import BuildingIcon from "../components/icons/BuildingIcon.astro";
+import { Icon } from "astro-icon/components";
 
 const cards = [
   {
-    title: "Para tu peluqueria",
-    subtitle: "Agendá turnos y respondé dudas",
+    title: "Para tu peluquería",
+    subtitle: "Optimiza citas y consultas",
     content:
-      "Nuestros chatbot pueden encargarse de la comunicación con tus clientes, agendando turnos y respondiendo dudas para que no estés pendiente del teléfono.",
-    icon: ScissorIcon,
+      "Chatbots que gestionan citas y resuelven consultas eficientemente, liberándote de la atención constante al teléfono.",
+    icon: "mdi:scissors",
   },
   {
     title: "Para tu tienda",
-    subtitle: "Recibí pagos y agilizá tus ventas",
+    subtitle: "Simplifica pagos y ventas",
     content:
-      "Con nuestros chatbots vas a poder recibir pagos de tus clientes a través de Whatsapp, agilizando tus ventas.",
-    icon: ShopIcon,
+      "Chatbots que procesan pagos por WhatsApp, agilizando transacciones y mejorando la experiencia de compra.",
+    icon: "mdi:store",
   },
   {
     title: "Para tu organización",
-    subtitle: "Automatizá tus flujos",
+    subtitle: "Automatiza procesos",
     content:
-      "Nuestros chatbots se pueden integrar con tus flujos permitiendo operaciones a través del chat. Genera reportes, facturas y más.",
-    icon: BuildingIcon,
+      "Chatbots integrados en tus flujos de trabajo para operaciones complejas vía chat, optimizando tu eficiencia operativa.",
+    icon: "mdi:office-building",
+  },
+  {
+    title: "Para tu restaurante",
+    subtitle: "Gestiona reservas y pedidos",
+    content:
+      "Chatbots que simplifican reservas y pedidos a domicilio, mejorando la experiencia del cliente y optimizando operaciones.",
+    icon: "mdi:silverware-fork-knife",
   },
 ];
 ---
 
-<section class="py-12 md:py-24">
-  <div class="container mx-auto px-4 sm:px-0">
-    <h2 class="mb-6 text-center text-3xl font-bold md:text-5xl">
-      Nuestro Producto
-    </h2>
-    <p class="mb-12 text-center text-lg md:text-xl">
-      Generamos asistentes personalizados que, a través de Whatsapp, te permiten
-      manejar tu negocio de manera más eficiente.
+<section class="relative py-12 md:py-36">
+<div class="absolute inset-x-0 top-0 w-full">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full">
+  <path fill="#f0fdf4" fill-opacity="1" d="M0,96L48,106.7C96,117,192,139,288,128C384,117,480,75,576,53.3C672,32,768,32,864,58.7C960,85,1056,139,1152,181.3C1248,224,1344,256,1392,272L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+  </svg>
+</div>
+
+
+  <div class="container mx-auto px-4 sm:px-0 relative ">
+    <header class="my-6 text-center z-10">
+      <h2 class="text-3xl font-bold md:text-5xl z-10">Soluciones Innovadoras</h2>
+      <h3 class="mt-2 text-xl font-semibold md:text-2xl z-10">
+        Transformando negocios con IA y WhatsApp
+      </h3>
+    </header>
+
+    <p
+      class="mx-auto mb-12 max-w-3xl text-center text-lg text-gray-600 md:text-xl"
+    >
+      Asistentes virtuales personalizados que, vía WhatsApp, transforman la
+      gestión de tu negocio, mejorando eficiencia y satisfacción del cliente.
     </p>
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
       {
         cards.map((card) => (
           <Card class="rounded-xl border bg-primary p-6 text-center">
@@ -53,7 +72,7 @@ const cards = [
                   <p class="text-sm text-gray-600">{card.subtitle}</p>
                 </div>
                 <div class="flex h-full items-center">
-                  <card.icon class="mx-auto mb-4 h-12 w-12" />
+                  <Icon name={card.icon} class="mx-auto h-12 w-12" />
                 </div>
               </div>
             </CardHeader>
