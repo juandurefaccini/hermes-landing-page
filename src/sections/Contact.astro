@@ -11,7 +11,7 @@ import AstroContactForm from "../components/AstroContactForm.astro";
     >
       Descubrí cómo automatizar tus turnos con nuestro chatbot por WhatsApp.
     </p>
-    <div class="mx-auto max-w-2xl">
+    <div class="mx-auto max-w-md sm:max-w-xl">
       <a
         href="https://api.whatsapp.com/send?phone=2236853926&text=Hola!%20Quiero%20hacer%20una%20consulta"
         target="_blank"
@@ -19,10 +19,12 @@ import AstroContactForm from "../components/AstroContactForm.astro";
         class="block w-full"
       >
         <div
-          class="mb-4 text-sm flex  sm:flex-row items-center justify-center  sm:gap-4 rounded-3xl bg-primary p-2 sm:p-4 font-bold text-secondary"
+          class="mb-4 flex items-center justify-center rounded-3xl bg-primary p-2 text-sm font-bold text-secondary transition-all duration-300 hover:scale-105 hover:outline hover:outline-offset-2 hover:outline-primary sm:flex-row sm:gap-4 sm:p-4"
         >
-          <span class="text-center sm:text-left">¡Contactanos por WhatsApp haciendo click acá!</span>
-          <div class="sm:flex h-8 items-center justify-center hidden">
+          <span class="text-center sm:text-left sm:text-xl"
+            >¡Contactanos por WhatsApp haciendo click acá!</span
+          >
+          <div class="hidden h-8 items-center justify-center sm:flex">
             <div class="relative z-20">
               <svg
                 fill="#fff"

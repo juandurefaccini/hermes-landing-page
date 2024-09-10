@@ -26,7 +26,7 @@ const initialBusinessName = businessTypes[0];
   aria-label="Hero Section"
 >
   <div
-    class="container mx-auto h-full w-full md:grid md:grid-cols-12 md:items-stretch md:gap-4"
+    class="container relative z-10 mx-auto h-full w-full md:grid md:grid-cols-12 md:items-stretch md:gap-4"
   >
     <div class="flex h-full flex-col justify-center p-4 sm:p-0 md:col-span-8">
       <h1
@@ -53,15 +53,15 @@ const initialBusinessName = businessTypes[0];
           class="aspect-auto h-full w-min"
         />
       </div> -->
-
       <div
         class="animate-fadeIn animate-delay-1000 mt-6 flex flex-col gap-2 md:flex-row md:gap-8"
       >
         <a
           href="https://api.whatsapp.com/send?phone=5492236853&text=Hola%2C%20quisiera%20saber%20mas%20de%20su%20servicio"
           class="group inline-block"
-          rel="noopener"
-          aria-label="Quiero mi asistente"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Quiero probar gratis por 30 días"
         >
           <Button
             variant="primary"
@@ -73,7 +73,12 @@ const initialBusinessName = businessTypes[0];
             >
           </Button>
         </a>
-        <a href="#contact" class="" aria-label="Comunicarme con ventas">
+        <a
+          href="#contact"
+          class=""
+          aria-label="Contacto"
+          rel="noopener noreferrer"
+        >
           <Button class="whitespace-nowrap" variant="secondary">
             <span
               class="px-2 text-sm tracking-wide sm:text-base md:text-lg lg:text-xl"
@@ -94,20 +99,34 @@ const initialBusinessName = businessTypes[0];
         loop
         muted
         playsinline
-        class="h-full rounded-xl object-contain z-20"
+        class="z-20 h-full rounded-xl object-contain"
         aria-label="Phone screen example"></video>
     </div>
   </div>
-  <div class="absolute bottom-0 left-0 w-full hidden sm:block ">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-      <path
-        fill="#f0fdf4"
-        fill-opacity="1"
-        d="M0,288L48,293.3C96,299,192,309,288,277.3C384,245,480,171,576,144C672,117,768,139,864,133.3C960,128,1056,96,1152,74.7C1248,53,1344,43,1392,37.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-      ></path>
-    </svg>
-  </div>
 </section>
+<div class="absolute inset-x-0 bottom-0 w-full overflow-hidden">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 320"
+    class="h-auto w-full"
+  >
+    <path
+      fill="#f0fdf4"
+      fill-opacity="1"
+      d="M0,288L48,293.3C96,299,192,309,288,277.3C384,245,480,171,576,144C672,117,768,139,864,133.3C960,128,1056,96,1152,74.7C1248,53,1344,43,1392,37.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+    >
+      <animate
+        attributeName="d"
+        dur="10s"
+        repeatCount="indefinite"
+        values="
+          M0,288L48,293.3C96,299,192,309,288,277.3C384,245,480,171,576,144C672,117,768,139,864,133.3C960,128,1056,96,1152,74.7C1248,53,1344,43,1392,37.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
+          M0,256L48,240C96,224,192,192,288,192C384,192,480,224,576,234.7C672,245,768,235,864,224C960,213,1056,203,1152,186.7C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
+          M0,288L48,293.3C96,299,192,309,288,277.3C384,245,480,171,576,144C672,117,768,139,864,133.3C960,128,1056,96,1152,74.7C1248,53,1344,43,1392,37.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+      />
+    </path>
+  </svg>
+</div>
 
 <style>
   @keyframes fadeIn {

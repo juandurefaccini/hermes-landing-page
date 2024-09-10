@@ -45,13 +45,16 @@ import FAQ from "src/sections/FAQ.astro";
       </h1>
       <div class="">
         <a
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Contate con nosotros"
           href="https://api.whatsapp.com/send?phone=5492236853&text=Hola%2C%20quisiera%20saber%20mas%20de%20su%20servicio"
         >
           <button
             type="button"
             class:list={[
-              `grow px-4 py-2 rounded-3xl `,
-              "bg-background border-2",
+              `grow px-4 py-2 rounded-3xl transition-all duration-300 ease-in-out hover:scale-105 hover:outline hover:outline-2 hover:outline-offset-2`,
+              "bg-background border-2 outline-secondary",
             ]}
           >
             <span>¡Contactate con nosotros!</span>
