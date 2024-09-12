@@ -1,4 +1,5 @@
 ---
+import WhatsappLinkWrapper from "@components/WhatsappLinkWrapper.astro";
 import Button from "../components/Button.astro";
 import MetaLogo from "../images/Meta-Logo.png";
 import juanbbweb from "../images/webm/phone.webm";
@@ -56,27 +57,22 @@ const initialBusinessName = businessTypes[0];
       <div
         class="animate-fadeIn animate-delay-1000 mt-6 flex flex-col gap-2 md:flex-row md:gap-8"
       >
-        <a
-          href="https://api.whatsapp.com/send?phone=5492236853&text=Hola%2C%20quisiera%20saber%20mas%20de%20su%20servicio"
-          class="group inline-block"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Quiero probar gratis por 30 días"
-        >
-          <Button
-            variant="primary"
-            class="main-cta-button hover:bg-primary-dark transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-          >
-            <span
-              class="text-sm tracking-wide sm:text-base md:text-lg lg:text-xl"
-              >¡Probá gratis por 30 días!</span
+        <div class="group inline-block">
+          <WhatsappLinkWrapper>
+            <Button
+              variant="primary"
+              class="main-cta-button hover:bg-primary-dark transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
-          </Button>
-        </a>
+              <span
+                class="text-sm tracking-wide sm:text-base md:text-lg lg:text-xl"
+                >¡Probá gratis por 30 días!</span
+              >
+            </Button>
+          </WhatsappLinkWrapper>
+        </div>
         <a
           href="#contact"
-          class=""
-          aria-label="Contacto"
+          class="" aria-label="Contacto"
           rel="noopener noreferrer"
         >
           <Button class="whitespace-nowrap" variant="secondary">
@@ -123,7 +119,7 @@ const initialBusinessName = businessTypes[0];
           M0,288L48,293.3C96,299,192,309,288,277.3C384,245,480,171,576,144C672,117,768,139,864,133.3C960,128,1056,96,1152,74.7C1248,53,1344,43,1392,37.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
           M0,256L48,240C96,224,192,192,288,192C384,192,480,224,576,234.7C672,245,768,235,864,224C960,213,1056,203,1152,186.7C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
           M0,288L48,293.3C96,299,192,309,288,277.3C384,245,480,171,576,144C672,117,768,139,864,133.3C960,128,1056,96,1152,74.7C1248,53,1344,43,1392,37.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-      />
+      ></animate>
     </path>
   </svg>
 </div>

@@ -10,6 +10,7 @@ import WhoWeAre from "../sections/WhoWeAre.astro";
 import OurProduct from "../sections/OurProduct.astro";
 import Usage from "src/sections/Usage.astro";
 import FAQ from "src/sections/FAQ.astro";
+import WhatsappLinkWrapper from "@components/WhatsappLinkWrapper.astro";
 ---
 
 <Layout title="Hermes">
@@ -44,12 +45,7 @@ import FAQ from "src/sections/FAQ.astro";
         ¿Qué esperás para agilizar tu negocio?
       </h1>
       <div class="">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Contate con nosotros"
-          href="https://api.whatsapp.com/send?phone=5492236853&text=Hola%2C%20quisiera%20saber%20mas%20de%20su%20servicio"
-        >
+        <WhatsappLinkWrapper>
           <button
             type="button"
             class:list={[
@@ -59,7 +55,7 @@ import FAQ from "src/sections/FAQ.astro";
           >
             <span>¡Contactate con nosotros!</span>
           </button>
-        </a>
+        </WhatsappLinkWrapper>
       </div>
     </Banner>
 

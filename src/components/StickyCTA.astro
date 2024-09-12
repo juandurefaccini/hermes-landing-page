@@ -1,28 +1,27 @@
 ---
 import { Icon } from "astro-icon/components";
+import WhatsappLinkWrapper from "./WhatsappLinkWrapper.astro";
 ---
 
 <!-- <div class="fixed bottom-8 right-8 hidden md:block"> -->
 <div
   class="fixed bottom-8 left-1/2 z-50 hidden -translate-x-1/2 transform md:block"
 >
-  <a
-    href="https://api.whatsapp.com/send?phone=5492236853&text=Hola%2C%20quisiera%20saber%20mas%20de%20su%20servicio"
-  >
+  <WhatsappLinkWrapper>
     <div
-      class="group flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-text p-2 transition-all duration-300 ease-in-out hover:w-64 hover:border hover:bg-primary hover:shadow-lg outline outline-2 outline-secondary"
+      class="group flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-text p-2 outline outline-2 outline-secondary transition-all duration-300 ease-in-out hover:w-64 hover:border hover:bg-primary hover:shadow-lg"
     >
       <div
-        class="absolute text-secondary transition-all duration-300 group-hover:opacity-0 group-hover:scale-0"
+        class="absolute text-secondary transition-all duration-300 group-hover:scale-0 group-hover:opacity-0"
       >
         <Icon name="Hermes" />
       </div>
 
       <h1
-        class="whitespace-nowrap font-semibold text-white opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 scale-0"
+        class="scale-0 whitespace-nowrap font-semibold text-white opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100"
       >
         Contactá con nosotros!
       </h1>
     </div>
-  </a>
+  </WhatsappLinkWrapper>
 </div>
