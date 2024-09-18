@@ -11,9 +11,11 @@ import OurProduct from "../sections/OurProduct.astro";
 import Usage from "src/sections/Usage.astro";
 import FAQ from "src/sections/FAQ.astro";
 import WhatsappLinkWrapper from "@components/WhatsappLinkWrapper.astro";
+import NavBar from "@components/NavBar.astro";
 ---
 
 <Layout title="Hermes">
+  <!-- <NavBar /> -->
   <main>
     <div class="relative min-h-dvh w-full bg-white">
       <div
@@ -24,7 +26,8 @@ import WhatsappLinkWrapper from "@components/WhatsappLinkWrapper.astro";
     </div>
 
     <WhoWeAre />
-    <OurProduct />
+    <!--     <OurProduct />
+ -->
     <!-- <Usage /> -->
 
     <!-- <Banner>
@@ -36,6 +39,8 @@ import WhatsappLinkWrapper from "@components/WhatsappLinkWrapper.astro";
         >
       </h1>
     </Banner> -->
+
+    <Usage />
 
     <Advantages />
     <Banner>
@@ -53,7 +58,10 @@ import WhatsappLinkWrapper from "@components/WhatsappLinkWrapper.astro";
               "bg-background border-2 outline-secondary",
             ]}
           >
-            <span>¡Contactate con nosotros!</span>
+            <span
+              class="text-sm tracking-wide sm:text-base md:text-lg lg:text-xl"
+              >¡Contactate con nosotros!</span
+            >
           </button>
         </WhatsappLinkWrapper>
       </div>

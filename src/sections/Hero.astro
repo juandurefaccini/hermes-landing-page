@@ -7,16 +7,11 @@ import { Image } from "astro:assets";
 
 const businessTypes = [
   "negocio",
-  "salón de belleza",
-  "consultorio",
   "cancha de fútbol",
+  "tienda",
+  "consultorio",
+  "taller",
   "gimnasio",
-  "tienda de ropa",
-  "peluquería",
-  "restaurante",
-  "clínica",
-  "hostel",
-  "pizzería",
 ];
 
 const initialBusinessName = businessTypes[0];
@@ -72,7 +67,8 @@ const initialBusinessName = businessTypes[0];
         </div>
         <a
           href="#contact"
-          class="" aria-label="Contacto"
+          class=""
+          aria-label="Contacto"
           rel="noopener noreferrer"
         >
           <Button class="whitespace-nowrap" variant="secondary">
@@ -187,20 +183,18 @@ const initialBusinessName = businessTypes[0];
   ];
 
   let currentIndex = 0;
+  const businessTypeElement = document.getElementById("businessType");
 
   function updateContent() {
-    const businessTypeElement = document.getElementById("businessType");
-
     if (businessTypeElement) {
       businessTypeElement.style.opacity = "0";
 
       setTimeout(() => {
         businessTypeElement.textContent = businessTypes[currentIndex];
         businessTypeElement.style.opacity = "1";
+        currentIndex = (currentIndex + 1) % businessTypes.length;
       }, 250);
     }
-
-    currentIndex = (currentIndex + 1) % businessTypes.length;
   }
 
   setInterval(updateContent, 3000);

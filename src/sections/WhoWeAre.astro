@@ -23,38 +23,36 @@ const features = [
 ];
 ---
 
-<section class="bg-green-50 py-12 md:py-12">
-  <div class="container mx-auto">
-    <div class="gap-4 px-4 sm:gap-8 sm:px-0">
-      <header class="my-6 text-center">
-        <h2 class="text-3xl font-bold md:text-5xl">
-          Somos <span class="font-bold italic text-primary">Hermes</span>
-        </h2>
-        <h3 class="mt-2 text-xl font-semibold md:text-2xl">
-          Tu aliado en la Comunicación Digital
-        </h3>
-      </header>
-      <p
-        class="mx-auto mb-12 max-w-3xl text-center text-lg text-gray-600 md:text-xl"
-      >
-        Nuestra misión es revolucionar tus operaciones empresariales a través de
-        WhatsApp. Diseñamos asistentes virtuales inteligentes y personalizados
-        para emprendimientos, pequeñas y medianas empresas, potenciando tu
-        eficiencia y alcance.
+<section class="bg-green-50 py-16 md:py-4">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <header class="mb-16 text-center">
+      <h2 class="text-4xl font-extrabold tracking-tight md:text-6xl">
+        Somos <span class="text-primary">Hermes</span>
+      </h2>
+      <p class="mt-4 text-xl text-gray-600 md:text-2xl">
+        Tu aliado en la Comunicación Digital
       </p>
-      <div class="grid gap-8 md:grid-cols-3">
-        {
-          features.map((feature) => (
-            <div class="rounded-lg bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-              <div class="mb-4 flex items-center">
-                <Icon name={feature.icon} class="mr-4 h-12 w-12 text-primary" />
-                <h4 class="text-xl font-semibold">{feature.title}</h4>
-              </div>
-              <p class="text-lg" set:html={feature.description} />
+    </header>
+    
+    <p class="mx-auto mb-16 max-w-3xl text-center text-lg text-gray-600 md:text-xl">
+      Nuestra misión es revolucionar tus operaciones empresariales a través de
+      WhatsApp. Diseñamos asistentes virtuales inteligentes y personalizados
+      para emprendimientos, pequeñas y medianas empresas, potenciando tu
+      eficiencia y alcance.
+    </p>
+    
+    <div class="grid gap-12 md:grid-cols-3">
+      {features.map((feature) => (
+        <div class="flex flex-col items-start">
+          <div class="mb-4 flex items-center">
+            <div class="mr-4 rounded-full bg-primary-light p-3 text-primary">
+              <Icon name={feature.icon} class="h-8 w-8" />
             </div>
-          ))
-        }
-      </div>
+            <h4 class="text-2xl font-bold">{feature.title}</h4>
+          </div>
+          <p class="text-lg text-gray-600" set:html={feature.description} />
+        </div>
+      ))}
     </div>
   </div>
 </section>

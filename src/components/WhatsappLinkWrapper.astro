@@ -1,5 +1,14 @@
+---
+interface Props {
+  message?: string;
+}
+
+const { message = "Hola! Quiero hacer una consulta" } = Astro.props;
+const encodedMessage = encodeURIComponent(message);
+---
+
 <a
-  href="https://api.whatsapp.com/send?phone=2236853926&text=Hola!%20Quiero%20hacer%20una%20consulta"
+  href={`https://api.whatsapp.com/send?phone=2236853926&text=${encodedMessage}`}
   target="_blank"
   rel="noreferrer noopener"
   class="block w-full"

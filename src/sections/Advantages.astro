@@ -3,94 +3,83 @@ import AdvantagesCard from "../components/AdvantagesCard.astro";
 import Button from "@components/Button.astro";
 import SectionHeader from "@components/SectionHeader.astro";
 import MetaSvgIcon from "@icons/MetaSvgIcon.astro";
-
 import { Icon } from "astro-icon/components";
+
+const advantages = [
+  {
+    title: "Respuestas ágiles",
+    description: "Agilidad en las respuestas sin salir de WhatsApp",
+    icon: "mdi:rocket"
+  },
+  {
+    title: "Reducí barreras",
+    description: "Aprovechá una plataforma globalmente aceptada y reducí la fricción con el usuario",
+    icon: "mdi:earth"
+  },
+  {
+    title: "Siempre disponible",
+    description: "Trabajamos para que no trabajes, tu asistente estará disponible 24/7",
+    icon: "mdi:sleep-off"
+  },
+  {
+    title: "Meta",
+    description: "Brindamos soporte para operar a través de Meta, para mejorar la experiencia de tus clientes",
+    icon: "meta"
+  },
+  {
+    title: "Escalabilidad",
+    description: "Hermes crece con vos y se adapta a tus nuevos desafíos. Escalabilidad garantizada",
+    icon: "mdi:trending-up"
+  },
+  {
+    title: "Personalizado",
+    description: "Adaptamos tu asistente para que se ajuste perfectamente a las necesidades específicas de tu negocio",
+    icon: "mdi:brush"
+  }
+];
 ---
 
-<section
-  class="flex flex-col items-center justify-center bg-background text-center md:py-36"
->
-  <div class="container mx-auto w-full md:max-w-6xl">
-    <!-- <h1 class="text-xl font-bold tracking-tighter md:text-4xl">
-      Descubrí los beneficios de usar <span
-        class="font-bold italic text-primary">HERMES</span
-      >
-    </h1> -->
+<section class="bg-background py-8 sm:py-12 md:py-36">
+  <div class="container mx-auto px-4 md:max-w-6xl">
     <SectionHeader
       title="Ventajas de usar Hermes"
       subtitle="Descubrí los beneficios que trae Hermes a tu negocio"
     />
-    <p
-      class="mx-auto mb-12 max-w-3xl text-center text-lg text-gray-600 md:text-xl"
-    >
+    <p class="mx-auto mb-6 sm:mb-8 md:mb-12 max-w-3xl text-center text-sm sm:text-base md:text-lg lg:text-xl text-gray-600">
       Potenciá tu negocio con Hermes, tu asistente virtual personalizado. Mejorá
       la comunicación, aumentá la eficiencia y ampliá tu alcance con nuestra
       solución inteligente.
     </p>
-    <div
-      class="mb-12 grid h-full grid-cols-2 items-center justify-center gap-4 p-4 md:grid-cols-3 lg:gap-16"
-    >
-      <AdvantagesCard
-        title="Respuestas ágiles"
-        description="Agilidad en las respuestas sin salir de WhatsApp"
-      >
-        <Icon name="mdi:rocket" class="h-12 w-12 text-primary" />
-      </AdvantagesCard>
-
-      <AdvantagesCard
-        title="Reducí barreras"
-        description="Aprovechá una plataforma globalmente aceptada y reducí la fricción con el usuario"
-      >
-        <Icon name="mdi:earth" class="h-12 w-12 text-primary" />
-      </AdvantagesCard>
-
-      <AdvantagesCard
-        title="Siempre disponible"
-        description="Trabajamos para que no trabajes, tu asistente estará disponible 24/7"
-      >
-        <Icon name="mdi:sleep-off" class="h-12 w-12 text-primary" />
-      </AdvantagesCard>
-
-      <AdvantagesCard
-        title="Meta"
-        description="Brindamos soporte para operar a través de Meta, para mejorar la experiencia de tus clientes"
-      >
-        <MetaSvgIcon />
-      </AdvantagesCard>
-
-      <AdvantagesCard
-        title="Escalabilidad"
-        description="Hermes crece con vos y se adapta a tus nuevos desafíos. Escalabilidad garantizada"
-      >
-        <Icon name="mdi:trending-up" class="h-12 w-12 text-primary" />
-      </AdvantagesCard>
-
-      <AdvantagesCard
-        title="Personalizado"
-        description="Adaptamos tu asistente para que se ajuste perfectamente a las necesidades específicas de tu negocio"
-      >
-        <Icon name="mdi:brush" class="h-12 w-12 text-primary" />
-      </AdvantagesCard>
-    </div>
-    <!-- <div class="">
-      <Button variant="primary"
-        ><span class="text-xs md:text-lg">Transformar tu negocio</span></Button
-      >
-    </div> -->
-    <a
-      href="#contact"
-      class="group inline-block"
-      rel="noopener"
-      aria-label="Quiero mi asistente"
-    >
-      <Button
-        variant="primary"
-        class="main-cta-button hover:bg-primary-dark transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-      >
-        <span class="text-sm tracking-wide sm:text-base md:text-lg lg:text-xl"
-          >¡Pedí tu asistente hoy!</span
+    <div class="mb-6 sm:mb-8 md:mb-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+      {advantages.map((advantage) => (
+        <AdvantagesCard
+          title={advantage.title}
+          description={advantage.description}
         >
-      </Button>
-    </a>
+          {advantage.icon === "meta" ? (
+            <MetaSvgIcon class="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
+          ) : (
+            <Icon name={advantage.icon} class="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-primary" />
+          )}
+        </AdvantagesCard>
+      ))}
+    </div>
+    <div class="text-center">
+      <a
+        href="#contact"
+        class="group inline-block"
+        rel="noopener"
+        aria-label="Quiero mi asistente"
+      >
+        <Button
+          variant="primary"
+          class="main-cta-button transition-all duration-300 ease-in-out hover:scale-105 hover:bg-primary-dark hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        >
+          <span class="text-sm sm:text-base md:text-lg lg:text-xl tracking-wide">
+            ¡Pedí tu asistente hoy!
+          </span>
+        </Button>
+      </a>
+    </div>
   </div>
 </section>

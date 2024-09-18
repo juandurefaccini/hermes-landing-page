@@ -1,116 +1,413 @@
 ---
 import Button from "@components/Button.astro";
+import WhatsappLinkWrapper from "@components/WhatsappLinkWrapper.astro";
+import { Icon } from "astro-icon/components";
+import { fade, slide } from "astro:transitions";
+
+import video_peluqueria from "../assets/videos/Video_Peluquería_2.webm";
+import video_innovar from "../assets/videos/Video_Innovar_2.webm";
+import video_metalurgica from "../assets/videos/Video_Metalurgica_2.webm";
 
 const examples = [
   {
-    id: "peluqueria",
-    title: "Peluquería",
-    steps: [
-      {
-        title: "Consulta",
-        description:
-          "El cliente pregunta al asistente virtual qué horarios hay disponibles para un corte de pelo.",
-      },
-      {
-        title: "Reserva",
-        description:
-          "El cliente decide reservar un horario en particular a través del asistente virtual.",
-      },
-      {
-        title: "Confirmación",
-        description:
-          "El asistente confirma la reserva con el usuario, proporcionando los detalles de la cita.",
-      },
+    id: "gestionCitas",
+    title: "Gestión de Citas",
+    shortDescription: "Automatización de reservas y atención al cliente",
+    description:
+      "Nuestro asistente virtual gestiona eficientemente las reservas, responde consultas sobre servicios y precios, y envía recordatorios automáticos. Optimiza la planificación y mejora la experiencia del usuario.",
+    videoSrc: video_peluqueria,
+    features: [
+      "Reservas automatizadas",
+      "Respuestas instantáneas",
+      "Sistema de recordatorios",
+      "Optimización de agenda",
     ],
+    useCases: [
+      "Peluquerías y salones de belleza",
+      "Consultorios médicos",
+      "Centros de estética",
+      "Gimnasios y centros deportivos",
+    ],
+    whatsappMessage: "Hola! Me interesa saber más sobre la gestión de citas automatizada.",
   },
   {
-    id: "tienda",
-    title: "E-Commerce (No disponible)",
-    steps: [],
+    id: "atencionEmpleados",
+    title: "Soporte para Organización",
+    shortDescription: "Soporte interno 24/7 y gestión eficiente de consultas",
+    description:
+      "El asistente virtual interno ofrece atención continua a los empleados, proporciona información detallada sobre políticas y procedimientos de la empresa, y canaliza problemas complejos al departamento de RRHH adecuado. Maximiza la eficiencia operativa y la satisfacción de los empleados.",
+    videoSrc: video_innovar,
+    features: [
+      "Disponibilidad constante",
+      "Información corporativa detallada",
+      "Gestión de escalamiento interno",
+      "Mejora de la experiencia del empleado",
+    ],
+    useCases: [
+      "Onboarding de nuevos empleados",
+      "Consultas sobre beneficios y políticas",
+      "Solicitudes de IT y soporte técnico",
+      "Gestión de vacaciones y ausencias",
+    ],
+    whatsappMessage: "Hola! Quisiera información sobre el soporte interno para empleados.",
+  },
+  {
+    id: "gestionPedidos",
+    title: "Gestión de Pedidos",
+    shortDescription: "Procesamiento automatizado y soporte técnico",
+    description:
+      "Este asistente procesa pedidos de forma eficiente, proporciona especificaciones técnicas detalladas, y mantiene a los clientes informados sobre el estado de sus órdenes. Optimiza las operaciones y reduce la carga de trabajo manual.",
+    videoSrc: video_metalurgica,
+    features: [
+      "Automatización de pedidos",
+      "Información técnica precisa",
+      "Seguimiento en tiempo real",
+      "Eficiencia operativa",
+    ],
+    useCases: [
+      "Industrias metalúrgicas",
+      "Fábricas de componentes electrónicos",
+      "Distribuidoras de materiales de construcción",
+      "Empresas de logística",
+    ],
+    whatsappMessage: "Hola! Me gustaría conocer más sobre la gestión automatizada de pedidos.",
   },
 ];
 ---
 
-<section id="usage" class="w-full bg-gray-100 py-12">
-  <div class="container mx-auto px-4 md:px-6 lg:px-8">
-    <h2
-      class="mb-8 text-center text-3xl font-bold tracking-tighter sm:text-5xl"
+<section id="usage" class="relative w-full overflow-hidden py-12">
+  <div class="absolute inset-x-0 top-0 w-full overflow-hidden">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 160"
+      class="w-full"
     >
-      ¿Cómo los clientes usarán nuestro asistente?
-    </h2>
-    <p class="mb-12 text-center text-lg text-gray-700">
-      Te mostramos un ejemplo de cómo una peluquería podría usar nuestro
-      asistente virtual. Por el momento, los ejemplos de restaurante, gimnasio y
-      taller mecánico no están disponibles.
+      <path
+        fill="#f0fdf4"
+        fill-opacity="1"
+        d="M0,48L48,53.3C96,59,192,69,288,64C384,59,480,37,576,26.7C672,16,768,16,864,29.3C960,43,1056,69,1152,90.7C1248,112,1344,128,1392,136L1440,144L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+      >
+        <animate
+          attributeName="d"
+          dur="10s"
+          repeatCount="indefinite"
+          values="
+          M0,48L48,53.3C96,59,192,69,288,64C384,59,480,37,576,26.7C672,16,768,16,864,29.3C960,43,1056,69,1152,90.7C1248,112,1344,128,1392,136L1440,144L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z;
+          M0,80L48,72C96,64,192,48,288,50.7C384,53,480,75,576,82.7C672,91,768,85,864,77.3C960,69,1056,59,1152,56C1248,53,1344,59,1392,61.3L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z;
+          M0,48L48,53.3C96,59,192,69,288,64C384,59,480,37,576,26.7C672,16,768,16,864,29.3C960,43,1056,69,1152,90.7C1248,112,1344,128,1392,136L1440,144L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+        ></animate>
+      </path>
+    </svg>
+  </div>
+  <div class="container mx-auto px-4 pt-16">
+    <header
+      class="z-10 my-6 text-center"
+      transition:animate={fade({ duration: "0.5s" })}
+    >
+      <h2
+        class="animate-fade-in-up z-10 text-3xl font-bold text-gray-800 md:text-5xl"
+      >
+        Soluciones Innovadoras
+      </h2>
+      <h3
+        class="animate-fade-in-up animate-delay-200 z-10 mt-2 text-xl font-semibold text-gray-700 md:text-2xl"
+      >
+        Transformando negocios con Inteligencia Artificial y WhatsApp
+      </h3>
+    </header>
+
+    <p
+      class="animate-fade-in-up animate-delay-400 mx-auto mb-12 max-w-3xl text-center text-lg text-gray-600 md:text-xl"
+    >
+      Asistentes virtuales personalizados que, vía WhatsApp, transforman la
+      gestión de tu negocio, mejorando eficiencia y satisfacción del cliente.
     </p>
-    <div class="mb-8 flex justify-center space-x-4">
+
+    <!-- Versión para escritorio -->
+    <div class="hidden w-full flex-row gap-8 lg:flex">
+      <div class="animate-fade-in-left w-1/4">
+        {
+          examples.map((example, index) => (
+            <button
+              class="example-button animate-fade-in-left mb-2 w-full rounded p-4 text-left transition-all duration-300 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500"
+              style={`animation-delay: ${index * 100}ms;`}
+              data-id={example.id}
+              aria-controls={`example-${example.id}`}
+            >
+              <h3 class="mb-2 text-xl font-bold text-gray-800">
+                {example.title}
+              </h3>
+              <p class="text-sm text-gray-600">{example.shortDescription}</p>
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="animate-fade-in-up w-1/2">
+        {
+          examples.map((example) => (
+            <div id={`video-${example.id}`} class="video-content hidden">
+              <div class="mx-auto w-full max-w-[270px] transform overflow-hidden rounded shadow-lg transition-all duration-500 hover:scale-105">
+                <video
+                  id={`phoneScreen-${example.id}`}
+                  src={example.videoSrc}
+                  mediagroup="phoneScreen"
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  aria-label={`Ejemplo de ${example.title}`}
+                  class="h-auto w-full opacity-0 transition-opacity duration-500"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="animate-fade-in-right w-1/4">
+        {
+          examples.map((example) => (
+            <div id={`example-${example.id}`} class="example-content hidden">
+              <h3 class="mb-4 text-2xl font-bold text-gray-800">
+                {example.title}
+              </h3>
+              <p class="mb-4 text-gray-700">{example.description}</p>
+              <h4 class="mb-2 text-xl font-semibold text-gray-800">
+                Características principales:
+              </h4>
+              <ul class="mb-4 list-none pl-0">
+                {example.features.map((feature, index) => (
+                  <li
+                    class="animate-fade-in-right mb-2 flex items-center text-gray-600"
+                    style={`animation-delay: ${index * 100}ms;`}
+                  >
+                    <Icon
+                      name="mdi:check-circle"
+                      class="mr-2 h-5 w-5 text-green-500"
+                    />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <h4 class="mb-2 text-xl font-semibold text-gray-800">
+                Casos de uso:
+              </h4>
+              <ul class="list-none pl-0">
+                {example.useCases.map((useCase, index) => (
+                  <li
+                    class="animate-fade-in-right mb-2 flex items-center text-gray-600"
+                    style={`animation-delay: ${(index + 4) * 100}ms;`}
+                  >
+                    <Icon
+                      name="mdi:building"
+                      class="mr-2 h-5 w-5 text-blue-500"
+                    />
+                    {useCase}
+                  </li>
+                ))}
+              </ul>
+              <WhatsappLinkWrapper message={example.whatsappMessage}>
+                <Button
+                  variant="primary"
+                  class="main-cta-button hover:bg-primary-dark mt-4 w-full transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                >
+                  <span class="lg:text-md text-sm tracking-wide sm:text-base md:text-sm">
+                    Consultar por WhatsApp
+                  </span>
+                </Button>
+              </WhatsappLinkWrapper>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Versión para móviles y tablets -->
+    <div class="lg:hidden">
       {
         examples.map((example) => (
-          <button
-            class={`example-button p-2 rounded hover:bg-gray-200 transition-colors duration-200 ${
-              example.steps.length > 0
-                ? "text-green-500"
-                : "text-gray-400 cursor-not-allowed"
-            }`}
-            data-id={example.id}
-            disabled={example.steps.length === 0}
-          >
-            {example.title}
-          </button>
+          <div class="mb-8 rounded-lg bg-white p-6 shadow-md">
+            <h3 class="mb-4 text-2xl font-bold text-gray-800">
+              {example.title}
+            </h3>
+            <div class="mx-auto mb-6 max-w-[270px]">
+              <video
+                src={example.videoSrc}
+                autoplay
+                loop
+                muted
+                playsinline
+                aria-label={`Ejemplo de ${example.title}`}
+                class="w-full rounded-lg shadow-md"
+              />
+            </div>
+            <p class="mb-4 text-gray-700">{example.description}</p>
+            
+            <!-- Acordeón para características y casos de uso -->
+            <div class="mb-4">
+              <button
+                class="accordion-toggle flex w-full items-center justify-between rounded-lg bg-gray-100 p-3 text-left font-semibold text-gray-800 hover:bg-gray-200"
+                data-target={`features-${example.id}`}
+              >
+                <span>Características principales</span>
+                <Icon name="mdi:chevron-down" class="h-5 w-5 transform transition-transform duration-200" />
+              </button>
+              <div id={`features-${example.id}`} class="accordion-content mt-2 pl-3">
+                <ul class="list-none pl-0">
+                  {example.features.map((feature) => (
+                    <li class="mb-2 flex items-center text-gray-600">
+                      <Icon name="mdi:check-circle" class="mr-2 h-5 w-5 text-green-500" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <button
+                class="accordion-toggle flex w-full items-center justify-between rounded-lg bg-gray-100 p-3 text-left font-semibold text-gray-800 hover:bg-gray-200"
+                data-target={`usecases-${example.id}`}
+              >
+                <span>Casos de uso</span>
+                <Icon name="mdi:chevron-down" class="h-5 w-5 transform transition-transform duration-200" />
+              </button>
+              <div id={`usecases-${example.id}`} class="accordion-content mt-2 pl-3">
+                <ul class="list-none pl-0">
+                  {example.useCases.map((useCase) => (
+                    <li class="mb-2 flex items-center text-gray-600">
+                      <Icon name="mdi:building" class="mr-2 h-5 w-5 text-blue-500" />
+                      {useCase}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <WhatsappLinkWrapper message={example.whatsappMessage}>
+              <Button class="w-full justify-center">
+                Consultar por WhatsApp
+              </Button>
+            </WhatsappLinkWrapper>
+          </div>
         ))
       }
     </div>
-    {
-      examples.map((example, index) => (
-        <div id={`example-${example.id}`} class="example-content">
-          <div class="grid gap-8 md:grid-cols-3">
-            {example.steps.map((step, stepIndex) => (
-              <div class="flex flex-col items-center">
-                <div class="mb-4 w-full bg-gray-300">
-                  <img
-                    src={`https://via.placeholder.com/300x400`}
-                    alt={`${example.title} Paso ${stepIndex + 1}`}
-                    class="h-full w-full object-cover"
-                  />
-                </div>
-                <h3 class="mb-2 text-center text-xl font-bold">
-                  <span class="block">Paso {stepIndex + 1}</span>
-                  <span class="block">{step.title}</span>
-                </h3>
-                <p class="text-center text-gray-600">{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))
-    }
   </div>
 </section>
 
+<style>
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  .accordion-content.active {
+    max-height: 1000px; /* Un valor alto para asegurar que todo el contenido sea visible */
+    transition: max-height 0.5s ease-in;
+  }
+</style>
+
 <script>
-  document.addEventListener("DOMContentLoaded", (event) => {
+  document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll(".example-button");
     const examples = document.querySelectorAll(".example-content");
+    const videos = document.querySelectorAll(".video-content");
+    const restartButtons = document.querySelectorAll(".restart-video");
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
-        if (button.disabled) return;
         const selectedId = button.getAttribute("data-id");
         examples.forEach((example) => {
           example.classList.add("hidden");
         });
+        videos.forEach((video) => {
+          video.classList.add("hidden");
+        });
         document
           .getElementById(`example-${selectedId}`)
           .classList.remove("hidden");
+        const selectedVideo = document.getElementById(`video-${selectedId}`);
+        selectedVideo.classList.remove("hidden");
+
+        const videoElement = selectedVideo.querySelector("video");
+        videoElement.currentTime = 0;
+        videoElement.play();
+        videoElement.classList.add("opacity-0");
+        setTimeout(() => {
+          videoElement.classList.remove("opacity-0");
+        }, 50);
 
         buttons.forEach((btn) => {
-          btn.classList.remove("text-green-500");
+          btn.classList.remove("bg-gray-200");
         });
-        button.classList.add("text-green-500");
+        button.classList.add("bg-gray-200");
       });
     });
 
-    // Initialize the first button as selected
-    buttons[0].classList.add("text-green-500");
+    restartButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const videoContent = button.closest(".video-content");
+        const videoElement = videoContent.querySelector("video");
+        videoElement.currentTime = 0;
+        videoElement.play();
+        videoElement.classList.add("opacity-0");
+        setTimeout(() => {
+          videoElement.classList.remove("opacity-0");
+        }, 50);
+      });
+    });
+
+    // Initialize the first button as selected and show its content
+    buttons[0].classList.add("bg-gray-200");
+    examples[0].classList.remove("hidden");
+    const firstVideo = videos[0];
+    firstVideo.classList.remove("hidden");
+    const firstVideoElement = firstVideo.querySelector("video");
+    setTimeout(() => {
+      firstVideoElement.classList.remove("opacity-0");
+    }, 50);
+
+    // Add event listener for video loop
+    videos.forEach((video) => {
+      const videoElement = video.querySelector("video");
+      videoElement.addEventListener("ended", () => {
+        videoElement.classList.add("opacity-0");
+        setTimeout(() => {
+          videoElement.currentTime = 0;
+          videoElement.play();
+          videoElement.classList.remove("opacity-0");
+        }, 50);
+      });
+    });
+
+    // Funcionalidad del acordeón para móviles
+    const accordionToggles = document.querySelectorAll('.accordion-toggle');
+    
+    accordionToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const targetId = toggle.getAttribute('data-target');
+        const content = document.getElementById(targetId);
+        const icon = toggle.querySelector('svg');
+        
+        content.classList.toggle('active');
+        icon.classList.toggle('rotate-180');
+
+        // Cerrar otros acordeones
+        accordionToggles.forEach(otherToggle => {
+          if (otherToggle !== toggle) {
+            const otherTargetId = otherToggle.getAttribute('data-target');
+            const otherContent = document.getElementById(otherTargetId);
+            const otherIcon = otherToggle.querySelector('svg');
+            
+            otherContent.classList.remove('active');
+            otherIcon.classList.remove('rotate-180');
+          }
+        });
+      });
+    });
   });
 </script>

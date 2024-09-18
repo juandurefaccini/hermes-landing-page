@@ -3,6 +3,11 @@ import SectionHeader from "@components/SectionHeader.astro";
 
 const faqs = [
   {
+    question: "¿Cómo funciona la tarifa del 1%?",
+    answer:
+      "La tarifa del 1% es aplicada a las operaciones exitosas. No se aplica a las devoluciones,cancelaciones o reembolsos de tus operaciones. El valor al cual se le aplica la comisión es determinado por el tipo de operación y el tipo de negocio. Para más información, podés consultar a stoviatandil@gmail.com.",
+  },
+  {
     question: "¿Cómo puedo contactar con soporte?",
     answer:
       "Podés contactar con nuestro equipo de soporte a través de nuestro formulario de contacto o enviando un correo a stoviatandil@gmail.com.",
@@ -30,7 +35,7 @@ const faqs = [
       title="Preguntas Frecuentes"
       subtitle="Respuestas a las dudas más comunes"
     />
-    <div class="mx-auto max-w-4xl">
+    <div class="mx-auto mt-16 max-w-4xl">
       {
         faqs.map((faq, index) => (
           <div
