@@ -18,7 +18,7 @@ const initialBusinessName = businessTypes[0];
 ---
 
 <section
-  class="relative flex flex-col justify-center px-4 text-center font-semibold tracking-tight md:h-dvh md:max-h-screen md:min-h-screen md:text-left"
+  class="relative flex flex-col justify-center px-4 pt-24 text-center font-semibold tracking-tight md:h-dvh md:max-h-screen md:min-h-screen md:pt-0 md:text-left"
   aria-label="Hero Section"
 >
   <div
@@ -39,8 +39,12 @@ const initialBusinessName = businessTypes[0];
           >{initialBusinessName}</span
         ><br /> con IA en WhatsApp
       </p>
-      <p class="animate-fadeIn animate-delay-400 mt-2 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700">
-        <span class="font-bold text-primary">Crecé sin riesgos, pagá solo por resultados</span>
+      <p
+        class="animate-fadeIn animate-delay-400 mt-2 text-base text-gray-700 sm:text-lg md:text-xl lg:text-2xl"
+      >
+        <span class="font-bold text-primary"
+          >Crecé sin riesgos, pagá solo por resultados</span
+        >
       </p>
 
       <div
@@ -52,7 +56,7 @@ const initialBusinessName = businessTypes[0];
           >
             <Button
               variant="primary"
-              class="main-cta-button w-full sm:w-auto hover:bg-primary-dark transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              class="main-cta-button hover:bg-primary-dark w-full transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 sm:w-auto"
             >
               <span
                 class="text-sm tracking-wide sm:text-base md:text-lg lg:text-xl"
@@ -61,11 +65,7 @@ const initialBusinessName = businessTypes[0];
             </Button>
           </WhatsappLinkWrapper>
         </div>
-        <a
-          href="#usage"
-          class="inline-block"
-          aria-label="Ver ejemplos"
-        >
+        <a href="#usage" class="inline-block" aria-label="Ver ejemplos">
           <Button variant="secondary" class="w-full sm:w-auto">
             <span
               class="text-sm tracking-wide sm:text-base md:text-lg lg:text-xl"
