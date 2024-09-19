@@ -14,18 +14,18 @@ import WhatsappLinkWrapper from "@components/WhatsappLinkWrapper.astro";
 import NavBar from "@components/NavBar.astro";
 ---
 
-<Layout title="Hermes">
-  <!-- <NavBar /> -->
+<Layout title="Hermes" >
+  <NavBar />
   <main>
-    <div class="relative min-h-dvh w-full bg-white">
+    <div class="relative min-h-dvh w-full bg-white" id="home">
       <div
         class="absolute h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"
       >
       </div>
       <Hero />
     </div>
-
-    <WhoWeAre />
+    
+      <WhoWeAre />
     <!--     <OurProduct />
  -->
     <!-- <Usage /> -->
@@ -73,3 +73,4 @@ import NavBar from "@components/NavBar.astro";
     <StickyCTA />
   </main>
 </Layout>
+

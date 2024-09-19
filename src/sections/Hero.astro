@@ -18,7 +18,7 @@ const initialBusinessName = businessTypes[0];
 ---
 
 <section
-  class="relative flex flex-col justify-center px-4 text-center tracking-tighter md:h-dvh md:max-h-screen md:min-h-screen md:text-left"
+  class="relative flex flex-col justify-center px-4 text-center font-semibold tracking-tight md:h-dvh md:max-h-screen md:min-h-screen md:text-left"
   aria-label="Hero Section"
 >
   <div
@@ -28,53 +28,48 @@ const initialBusinessName = businessTypes[0];
       <h1
         class="animate-fadeIn text-5xl font-bold italic text-primary sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
       >
-        HERMES
+        Tarifas desde el 1%
       </h1>
       <p
         class="animate-fadeIn animate-delay-200 mt-4 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl"
       >
-        Tu <span
+        Revoluciona tu <span
           id="businessType"
           class="font-bold italic text-primary transition-opacity duration-500 ease-in-out"
           >{initialBusinessName}</span
-        ><br /> ahora más cerca de tus clientes, gracias a nuestro asistente
+        ><br /> con IA en WhatsApp
+      </p>
+      <p class="animate-fadeIn animate-delay-400 mt-2 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700">
+        <span class="font-bold text-primary">Crecé sin riesgos, pagá solo por resultados</span>
       </p>
 
-      <!-- <div
-        class="animate-fadeIn animate-delay-800 mt-6 flex h-12 items-center justify-center gap-2 text-sm font-bold text-text sm:text-base md:justify-start md:text-lg lg:text-xl"
-      >
-        Contamos con soporte oficial para <Image
-          src={MetaLogo}
-          alt="Meta Logo"
-          class="aspect-auto h-full w-min"
-        />
-      </div> -->
       <div
-        class="animate-fadeIn animate-delay-1000 mt-6 flex flex-col gap-2 md:flex-row md:gap-8"
+        class="animate-fadeIn animate-delay-1000 mt-6 flex flex-col gap-4 sm:flex-row sm:gap-6"
       >
         <div class="group inline-block">
-          <WhatsappLinkWrapper>
+          <WhatsappLinkWrapper
+            message="¡Hola! Me interesa probar Hermes. ¿Puedo obtener mi prueba gratis por 30 días?"
+          >
             <Button
               variant="primary"
-              class="main-cta-button hover:bg-primary-dark transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              class="main-cta-button w-full sm:w-auto hover:bg-primary-dark transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
               <span
                 class="text-sm tracking-wide sm:text-base md:text-lg lg:text-xl"
-                >¡Probá gratis por 30 días!</span
+                >¡Quiero mi prueba gratis por 30 días!</span
               >
             </Button>
           </WhatsappLinkWrapper>
         </div>
         <a
-          href="#contact"
-          class=""
-          aria-label="Contacto"
-          rel="noopener noreferrer"
+          href="#usage"
+          class="inline-block"
+          aria-label="Ver ejemplos"
         >
-          <Button class="whitespace-nowrap" variant="secondary">
+          <Button variant="secondary" class="w-full sm:w-auto">
             <span
-              class="px-2 text-sm tracking-wide sm:text-base md:text-lg lg:text-xl"
-              >Contacto</span
+              class="text-sm tracking-wide sm:text-base md:text-lg lg:text-xl"
+              >Ver ejemplos</span
             >
           </Button>
         </a>
